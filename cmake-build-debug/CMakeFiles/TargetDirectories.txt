@@ -1,0 +1,14 @@
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/warning.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/sequential_linear_list.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/linked_linear_list.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/sequential_stacks.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/linked_stacks.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/sequential_queues.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/linked_queues.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/zyk_notes_on_data_structure.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/list_install_components.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/install.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/install/local.dir
+/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-debug/CMakeFiles/install/strip.dir

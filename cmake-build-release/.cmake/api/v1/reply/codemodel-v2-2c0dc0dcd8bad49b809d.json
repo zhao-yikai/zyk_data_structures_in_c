@@ -1,0 +1,124 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-018eaae935ff3bd1f342.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "zyk_notes_on_data_structure",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "linked_linear_list::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-linked_linear_list-Release-27e46eb2f180d9abaa7e.json",
+					"name" : "linked_linear_list",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "linked_queues::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-linked_queues-Release-8c018eee9f1e966e53f5.json",
+					"name" : "linked_queues",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "linked_stacks::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-linked_stacks-Release-f1e23c9aec54e0d7a6e2.json",
+					"name" : "linked_stacks",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sequential_linear_list::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sequential_linear_list-Release-ed6246a7e88aad0e05c4.json",
+					"name" : "sequential_linear_list",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sequential_queues::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sequential_queues-Release-fc6a1a0d09b49cf26f70.json",
+					"name" : "sequential_queues",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sequential_stacks::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sequential_stacks-Release-fa8593b6d47b2465007b.json",
+					"name" : "sequential_stacks",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "warning::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-warning-Release-2b452c573271463dcb43.json",
+					"name" : "warning",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "zyk_notes_on_data_structure::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-zyk_notes_on_data_structure-Release-a291722123401a1b0b79.json",
+					"name" : "zyk_notes_on_data_structure",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure/cmake-build-release",
+		"source" : "/Users/augustinzhao/Desktop/code/zyk_notes_on_data_structure"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

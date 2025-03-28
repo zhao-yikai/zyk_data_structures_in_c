@@ -1,0 +1,23 @@
+# CLion 默认忽略模板
+.idea/
+cmake-build-*/
+*.iml
+*.iws
+
+# C/C++ 编译产物
+*.o
+*.a
+*.so
+*.exe
+*.dll
+*.out
+
+# CMake 生成文件
+CMakeCache.txt
+CMakeFiles/
+install_manifest.txt
+
+# 项目自定义忽略项
+/build/
+/bin/
+/lib/

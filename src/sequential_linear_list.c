@@ -4,8 +4,8 @@
     Created By YikaiSays on Mar 18 2025
 */
 
-#include "sequential_linear_list.h"
-#include "warning.h"
+#include <sequential_linear_list.h>
+#include <warning.h>
 #include <stdio.h>
 
 #define SEQ_LIST_ERROR INT64_MIN

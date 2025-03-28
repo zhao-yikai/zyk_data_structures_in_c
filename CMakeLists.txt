@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(zyk_notes_on_data_structure LANGUAGES C)
+project(ZYK_Data_Structures_In_C LANGUAGES C)
 
 # 基础配置
 set(CMAKE_C_STANDARD 99)

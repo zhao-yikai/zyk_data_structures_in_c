@@ -34,7 +34,7 @@ ElementType Seq_GetElementAt(SeqList L, SeqPosition p) {
 }
 
 SeqPosition Seq_Find(SeqList L, ElementType X) {
-    SeqPosition p = SEQ_LIST_ERROR;
+    SeqPosition p = -1;
     for (int i = 0; i < L->Last; ++i) {
         if (L->Data[i] == X) {
             p = i;

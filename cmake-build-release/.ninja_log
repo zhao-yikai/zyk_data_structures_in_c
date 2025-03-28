@@ -1,8 +1,0 @@
-# ninja log v6
-2	49	1743042063559093375	CMakeFiles/zyk_notes_on_data_structure.dir/LinearDS/sequential_queues.c.o	69b2f87b5732655
-1	45	1742889055648290710	CMakeFiles/zyk_notes_on_data_structure.dir/LinearDS/sequential_stacks.c.o	af987bf064f7400
-0	54	1742889055648009211	CMakeFiles/zyk_notes_on_data_structure.dir/LinearDS/sequential_linear_list.c.o	496bf12b28ce2897
-1	44	1742889055648706209	CMakeFiles/zyk_notes_on_data_structure.dir/LinearDS/linked_stacks.c.o	3d1819ac4fd908fd
-7	162	1743041816024750272	CMakeFiles/zyk_notes_on_data_structure.dir/main.c.o	154e6d24b2fc697e
-1	50	1742889055648166044	CMakeFiles/zyk_notes_on_data_structure.dir/LinearDS/linked_linear_list.c.o	4aa38e2d2cbaac00
-49	80	1743042063606086981	zyk_notes_on_data_structure	d16ed42634b58e45

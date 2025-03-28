@@ -1,6 +1,8 @@
-//
-// Created by 趙熠楷 on 3/27/25.
-//
+/*
+    Warn.h
+    Created By YikaiSays on Mar 23 2025
+*/
+
 
 #ifndef WARNING_H
 #define WARNING_H

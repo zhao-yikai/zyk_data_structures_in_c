@@ -1,5 +1,5 @@
 /*
-    sequential_stacks.c
+    SeqStack.c
     Functions of Sequential Stacks
     Created By YikaiSays on Mar 23 2025
 */

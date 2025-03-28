@@ -1,6 +1,8 @@
-//
-// Created by 趙熠楷 on 3/27/25.
-//
+/*
+    LinkedQueue.c
+    Functions of Linked Queues
+    Created By YikaiSays on Mar 28 2025
+*/
 
 #ifndef LINKED_QUEUES_H
 #define LINKED_QUEUES_H

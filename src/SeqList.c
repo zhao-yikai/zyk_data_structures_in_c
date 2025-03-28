@@ -1,6 +1,6 @@
 /*
-    sequential_linear_lists.c
-    Functions of Sequential Linear List
+    SeqList.c
+    Functions of Sequential Lists
     Created By YikaiSays on Mar 18 2025
 */
 

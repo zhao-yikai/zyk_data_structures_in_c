@@ -1,6 +1,7 @@
-//
-// Created by 趙熠楷 on 3/27/25.
-//
+/*
+    Warn.c
+    Created By YikaiSays on Mar 23 2025
+*/
 
 #include <Warn.h>
 #include <stdio.h>

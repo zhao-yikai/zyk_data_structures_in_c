@@ -1,6 +1,8 @@
-//
-// Created by 趙熠楷 on 3/24/25.
-//
+/*
+    SeqQueue.h
+    Functions of Sequential Queues
+    Created By YikaiSays on Mar 28 2025
+*/
 
 #ifndef SEQUENTIAL_QUEUES_H
 #define SEQUENTIAL_QUEUES_H

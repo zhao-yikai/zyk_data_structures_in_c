@@ -1,6 +1,6 @@
 /*
-    linked_linear_list.h
-    Functions of Linked Linear List
+    LinkedList.c
+    Functions of Linked Linear Lists
     Created By YikaiSays on Mar 23 2025
 */
 

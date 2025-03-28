@@ -1,7 +1,7 @@
 /*
-    sequential_linear_lists.h
-    Functions of Sequential Linear List
-    Created By YikaiSays on Mar 16 2025
+    SeqList.h
+    Functions of Sequential Lists
+    Created By YikaiSays on Mar 18 2025
 */
 
 #ifndef SEQUENTIAL_LINEAR_LIST_H  // Include Guard 开始

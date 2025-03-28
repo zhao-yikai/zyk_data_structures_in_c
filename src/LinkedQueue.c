@@ -2,8 +2,8 @@
 // Created by 趙熠楷 on 3/27/25.
 //
 
-#include "linked_queues.h"
-#include "warning.h"
+#include "LinkedQueue.h"
+#include "Warn.h"
 
 #include <stdio.h>
 #include <stdlib.h>

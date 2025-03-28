@@ -1,5 +1,5 @@
 /*
-    linked_stacks.h
+    LinkedStack.h
     Functions of Linked Stacks
     Created By YikaiSays on Mar 23 2025
 */

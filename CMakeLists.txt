@@ -15,8 +15,8 @@ target_include_directories(dsc_headers INTERFACE
 
 # 编译警告模块（作为基础工具库）
 add_library(warning STATIC
-        src/warning.c
-        include/dsc/warning.h
+        src/Warn.c
+        include/dsc/Warn.h
 )
 target_link_libraries(warning PUBLIC dsc_headers)
 
@@ -36,12 +36,12 @@ endfunction()
 
 # 声明所有数据结构模块
 set(DATA_STRUCTURES
-        sequential_linear_list
-        linked_linear_list
-        sequential_stacks
-        linked_stacks
-        sequential_queues
-        linked_queues
+        SeqList
+        LinkedList
+        SeqStack
+        LinkedStack
+        SeqQueue
+        LinkedQueue
 )
 
 foreach (ds ${DATA_STRUCTURES})

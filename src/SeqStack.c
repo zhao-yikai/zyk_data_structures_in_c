@@ -4,9 +4,8 @@
     Created By YikaiSays on Mar 23 2025
 */
 
-#include "sequential_stacks.h"
+#include "SeqStack.h"
 
-typedef struct SeqStackNode * SeqStackNodePtr;
 typedef int Position;
 
 struct SeqStackNode {
@@ -14,7 +13,6 @@ struct SeqStackNode {
     Position Top;
     int MaxSize;
 };
-typedef SeqStackNodePtr SeqStack;
 
 SeqStack SeqStack_Create(int MaxSize) {
     SeqStack S = malloc(sizeof(struct SeqStackNode));

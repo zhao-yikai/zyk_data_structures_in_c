@@ -5,9 +5,9 @@
 */
 
 #include <stdio.h>
-#include <linked_linear_list.h>
+#include <LinkedList.h>
 
-#include "warning.h"
+#include "Warn.h"
 
 struct LinkedListNode {
     ElementType Data;

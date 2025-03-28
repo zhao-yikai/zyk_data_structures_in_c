@@ -2,7 +2,7 @@
 // Created by 趙熠楷 on 3/24/25.
 //
 
-#include "sequential_queues.h"
+#include "SeqQueue.h"
 
 #include <stdio.h>
 #include <stdlib.h>

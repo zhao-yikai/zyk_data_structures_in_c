@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include <sequential_linear_list.h>
+#include <SeqList.h>
 
 int main(void) {
     SeqList l = SeqList_Create();

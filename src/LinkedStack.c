@@ -4,9 +4,9 @@
     Created By YikaiSays on Mar 23 2025
 */
 
-#include "linked_stacks.h"
+#include <LinkedStack.h>
 
-#include "warning.h"
+#include "Warn.h"
 
 struct LinkedStackNode {
     ElementType Data;

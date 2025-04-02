@@ -106,7 +106,7 @@ bool SeqList_InsertAt(SeqList L, ElementType X, SeqPosition p) {
         Warn("Seq_Insert: Invalid Position, Negative SeqPosition p");
         return false;
     }
-    if (p >=L->Last + ) {
+    if (p >=L->Last + ) {   // Apr 2: 需要修改， 上次这里没写完， 电脑撒上咖啡了
         Warn("Seq_Insert: Invalid Position!");
         return false;
     }

@@ -28,7 +28,7 @@ Length Linked_GetLength(LinkedListHead L);
 // 2. 按序号查找 FindKth, 根据指定的位序K， 返回L中相应的元素
 ElementType Linked_GetElementAtPosition(LinkedListHead L, int k);
 
-ElementType Linked_GetElementAtNodePtr(LinkedListHead L, LinkedList_Position p);
+ElementType Linked_GetElementAtNodePtr(LinkedList_Position p);
 
 // 3. 按值查找， 既定位 Find
 LinkedList_Position Linked_Find(LinkedListHead L, ElementType X);

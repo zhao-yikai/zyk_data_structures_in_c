@@ -6,5 +6,5 @@
 
 #ifndef WARNING_H
 #define WARNING_H
-    void Warn(char * message);
+    void Warn(const char * message);
 #endif //WARNING_H

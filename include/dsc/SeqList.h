@@ -14,7 +14,7 @@
     and the length of the list is dynamically variable, the capacity of the array 
     needs to be designed large enough.
 */
-#define MAXSIZE 100 // MAXSIZE is an integer sufficiently large as defined based on practical issues.
+#define MAXSIZE 1000 // MAXSIZE is an integer sufficiently large as defined based on practical issues.
 
 
 typedef int_fast64_t ElementType;
@@ -44,22 +44,26 @@ typedef SeqListPtr SeqList;
 // Linear List Operations:
 
 // Initialize a New List
-SeqList SeqList_Create();
+SeqList SeqList_Create(void);
+
+bool SeqList_IsEmpty(SeqList L);
 
 // Return the element a_i in L at the specified position p
-ElementType Seq_GetElementAt(SeqList L, SeqPosition p);
+ElementType SeqList_GetElementAt(SeqList L, SeqPosition p);
 
 // Return the position of the first occurrence of X in L. Returns an error if X is not found.
-SeqPosition Seq_Find(SeqList L, ElementType X);
+SeqPosition SeqList_Find(SeqList L, ElementType X);
+
+bool SeqList_IsFull(SeqList L);
 
 // Insert X into L before position p. Returns true on success, false otherwise.
-bool Seq_InsertAt(SeqList L, ElementType X, SeqPosition p);
+bool SeqList_InsertAt(SeqList L, ElementType X, SeqPosition p);
 
 // Delete the element at position p in L. Returns true on success, false otherwise.
-bool Seq_DeleteAt(SeqList L, SeqPosition p);
+bool SeqList_DeleteAt(SeqList L, SeqPosition p);
 
 // Return the number of elements in L.
-int Seq_GetLength(SeqList L);
+int SeqList_GetLength(SeqList L);
 
 // Print the value of L->Last and every element in the list
 void Seq_Print(SeqList L);

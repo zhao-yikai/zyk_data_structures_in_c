@@ -10,7 +10,7 @@
 #include <stdlib.h>  // 添加malloc/free支持
 
 // 定义颜色代码常量
-#define RED_COLOR    "\033[91m"
+#define RED_COLOR    "\033[31m"
 #define RESET_COLOR  "\033[0m"
 #define BORDER_CHAR  '-'
 

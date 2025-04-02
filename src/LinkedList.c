@@ -22,7 +22,7 @@ struct LinkedListNode {
 LinkedListHead Linked_Create(void) {
     LinkedList_Position p = malloc(sizeof(struct LinkedListNode));
     if (!p) {
-        Warn("Linked_Create: MALLOC ERROR!");
+        Warn("Linked_Create: Memory Allocation Error!");
         return NULL;
     }
     // DeepSeek: 头节点数据域建议初始化为特殊值（根据ElementType定义）
@@ -41,12 +41,9 @@ Length Linked_GetLength(LinkedListHead L) {
         Warn("Linked_GetLength: INVALID LIST!");
         return LINKED_ERROR;
     }
-
     Length l = 0;
     // DeepSeek: 建议从第一个有效节点开始计数（头节点不计入长度）
-    for (LinkedList_Position p = L->Next; p != NULL; p = p->Next) {
-        ++l;
-    }
+    for (LinkedList_Position p = L->Next; p != NULL; p = p->Next, ++l) {}
     return l;
 }
 

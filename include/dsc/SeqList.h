@@ -16,7 +16,6 @@
 */
 #define MAXSIZE 1000 // MAXSIZE is an integer sufficiently large as defined based on practical issues.
 
-
 typedef int_fast64_t ElementType;
 
 /*

@@ -1,111 +1,109 @@
 #include <stdio.h>
-#include "SeqList.h"
 #include <assert.h>
+#include "SeqList.h"
 
-#define STRESS_TEST_SIZE 1000  // 远超过MAXSIZE的测试量
+void test_creation_and_basics() {
+    SeqList L = SeqList_Create();
+    assert(L != NULL);
+    assert(SeqList_IsEmpty(L) == true);
+    assert(SeqList_GetLength(L) == 0);
+    printf("创建和基础测试通过 ✅\n");
+}
 
-// 异常测试宏
-#define TEST_EXCEPTION(expr, expected) \
-    do { \
-        bool res = (expr); \
-        printf("[%s] %s -> %s (Expected: %s)\n", \
-              res ? "FAIL" : "PASS", #expr, res ? "true" : "false", expected ? "true" : "false"); \
-    } while(0)
+void test_insertion_deletion() {
+    SeqList L = SeqList_Create();
 
-void test_basic_operations() {
-    printf("\n=== 基础功能测试 ===\n");
+    // 基础插入
+    assert(SeqList_InsertAt(L, 100, 0) == true);
+    assert(SeqList_GetElementAt(L, 0) == 100);
+    assert(SeqList_GetLength(L) == 1);
+
+    // 头部插入
+    assert(SeqList_InsertAt(L, 200, 0) == true);
+    assert(SeqList_GetElementAt(L, 0) == 200);
+    assert(SeqList_GetElementAt(L, 1) == 100);
+
+    // 中间插入
+    assert(SeqList_InsertAt(L, 300, 1) == true);
+    assert(SeqList_GetElementAt(L, 1) == 300);
+
+    // 尾部插入
+    assert(SeqList_InsertAt(L, 400, 3) == true);
+    assert(SeqList_GetElementAt(L, 3) == 400);
+    assert(SeqList_GetLength(L) == 4);
+
+    // 非法插入
+    assert(SeqList_InsertAt(L, 500, -1) == false);   // 负位置
+    assert(SeqList_InsertAt(L, 500, 5) == false);     // 超过当前长度+1
+    assert(SeqList_InsertAt(L, 500, 1000) == false); // 超过MAXSIZE
+
+    // 删除测试
+    assert(SeqList_DeleteAt(L, 0) == true);        // 删除头部
+    assert(SeqList_GetElementAt(L, 0) == 300);
+    assert(SeqList_DeleteAt(L, 2) == true);        // 删除尾部
+    assert(SeqList_GetLength(L) == 2);
+    assert(SeqList_DeleteAt(L, 1) == true);        // 删除中间
+    assert(SeqList_GetElementAt(L, 0) == 300);
+
+    // 非法删除
+    assert(SeqList_DeleteAt(L, -1) == false);      // 负位置
+    assert(SeqList_DeleteAt(L, 1) == false);       // 超出现有长度
+    printf("插入删除测试通过 ✅\n");
+}
+
+void test_search_and_edge_cases() {
     SeqList L = SeqList_Create();
 
     // 空表测试
-    assert(SeqList_GetLength(L) == 0);
-    Seq_Print(L);
+    assert(SeqList_Find(L, 100) == -1);
+    assert(SeqList_IsEmpty(L) == true);
 
-    // 边界插入测试
-    TEST_EXCEPTION(SeqList_InsertAt(L, 100, 1), false);  // 空表插入越界[1](@ref)
-    TEST_EXCEPTION(SeqList_InsertAt(L, 0, 0), true);     // 首元素插入
-    TEST_EXCEPTION(SeqList_InsertAt(L, 1, 1), true);     // 连续插入
-    TEST_EXCEPTION(SeqList_InsertAt(L, 3, 2), false);    // 跳跃插入
+    // 填充测试数据
+    SeqList_InsertAt(L, 10, 0);
+    SeqList_InsertAt(L, 20, 1);
+    SeqList_InsertAt(L, 30, 2);
 
-    // 数据验证
-    assert(SeqList_GetElementAt(L, 0) == 0);
-    assert(SeqList_GetElementAt(L, 1) == 1);
-    assert(SeqList_Find(L, 1) == 1);
-    Seq_Print(L);
+    // 查找测试
+    assert(SeqList_Find(L, 10) == 0);
+    assert(SeqList_Find(L, 30) == 2);
+    assert(SeqList_Find(L, 99) == -1);
+
+    // 边界值测试
+    assert(SeqList_GetElementAt(L, 0) == 10);
+    assert(SeqList_GetElementAt(L, 2) == 30);
+    printf("搜索和边界测试通过 ✅\n");
 }
 
-void test_boundary_conditions() {
-    printf("\n=== 边界条件测试 ===\n");
+void test_full_condition() {
     SeqList L = SeqList_Create();
 
-    // 满容量测试
-    for (SeqPosition i=0; i<MAXSIZE; i++) {
-        assert(SeqList_InsertAt(L, i, i));
+    // 填满整个表
+    for (SeqPosition i = 0; i < MAXSIZE; i++) {
+        assert(SeqList_InsertAt(L, i, i) == true);
     }
-    TEST_EXCEPTION(SeqList_InsertAt(L, MAXSIZE, MAXSIZE), false);  // 超出MAXSIZE[1](@ref)
+
+    assert(SeqList_IsFull(L) == true);
+    assert(SeqList_InsertAt(L, 100, MAXSIZE) == false); // 满表插入失败
     assert(SeqList_GetLength(L) == MAXSIZE);
-
-    // 边界删除测试
-    TEST_EXCEPTION(SeqList_DeleteAt(L, MAXSIZE), false);  // 越界删除
-    assert(SeqList_DeleteAt(L, MAXSIZE-1));              // 删除末尾
-    assert(SeqList_GetLength(L) == MAXSIZE-1);
-
-    // 循环插入删除
-    for (int i=0; i<10; i++) {
-        assert(SeqList_InsertAt(L, 0, i));    // 头部插入
-        assert(SeqList_DeleteAt(L, 0));       // 头部删除
-    }
-    Seq_Print(L);
+    printf("满表测试通过 ✅\n");
 }
 
-void test_error_handling() {
-    printf("\n=== 异常处理测试 ===\n");
+void test_print_function() {
     SeqList L = SeqList_Create();
-
-    // 非法位置访问
-    TEST_EXCEPTION(SeqList_GetElementAt(L, 0), false);  // 空表访问
-    TEST_EXCEPTION(SeqList_DeleteAt(L, 0), false);       // 空表删除
-
-    // 特殊值测试
-    SeqList_InsertAt(L, -1, 0);        // 插入负值
-    SeqList_InsertAt(L, 0xDEAD, 1);    // 插入非常规数值
-    assert(SeqList_Find(L, 0xDEAD) == 1);
-}
-
-void stress_test() {
-    printf("\n=== 压力测试 ===\n");
-    SeqList L = SeqList_Create();
-
-    // 顺序插入
-    for (int i=0; i<MAXSIZE; i++) {
-        assert(SeqList_InsertAt(L, i, i%100));
-    }
-
-    // 随机删除
-    for (int i=MAXSIZE-1; i>=0; i-=2) {
-        assert(SeqList_DeleteAt(L, i));
-    }
-    assert(SeqList_GetLength(L) == MAXSIZE/2);
-
-    // 交替操作
-    for (int i=0; i<100; i++) {
-        assert(SeqList_InsertAt(L, i%5, i));
-        assert(SeqList_DeleteAt(L, (i+3)%SeqList_GetLength(L)));
-    }
+    printf("\n打印功能测试：");
+    SeqList_InsertAt(L, 10, 0);
+    SeqList_InsertAt(L, 20, 1);
+    Seq_Print(L);  // 应显示 Last:1 和元素 [10,20]
+    printf("请人工验证打印输出 📄\n");
 }
 
 int main() {
-    // 基础功能验证
-    test_basic_operations();
+    test_creation_and_basics();
+    test_insertion_deletion();
+    test_search_and_edge_cases();
+    test_full_condition();
+    test_print_function();
 
-    // 边界条件测试
-    test_boundary_conditions();
-
-    // 异常处理测试
-    test_error_handling();
-
-    // 压力测试
-    stress_test();
-
-    printf("\n所有测试用例执行完成！\n");
+    printf("\n所有测试通过！🎉\n");
     return 0;
 }

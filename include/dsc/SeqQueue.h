@@ -31,4 +31,7 @@ bool SeqQueue_IsEmpty(SeqQueue Q);
 // 删除并返回队列头元素。 若队列为空， 返回错误信息； 否则将队列头元素数据从队列中删除并返回。
 ElementType SeqQueue_Dequeue(SeqQueue Q);
 
+// 队列销毁操作
+void SeqQueue_Destroy(SeqQueue Q);
+
 #endif //SEQUENTIAL_QUEUES_H

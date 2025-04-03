@@ -94,7 +94,7 @@ SeqPosition SeqList_Find(SeqList L, ElementType X) {
  * 返回值: 成功返回true，失败返回false
  */
 
-// Mar 29 重写
+// Mar 29 重写 -> 重写的过程中咖啡洒在了电脑上， 此处标记为 The Coffee Crisis
 bool SeqList_InsertAt(SeqList L, ElementType X, SeqPosition p) {
     // 判断顺序表指针L是否有效
     if (!L) {

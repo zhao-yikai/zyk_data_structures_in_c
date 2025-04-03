@@ -46,7 +46,9 @@ bool LinkedStack_Push(LinkedStackHead S, ElementType X) {
             S->Next = tmp;          // 更新头节点指针
             ret = true;
         }
-    }  // DeepSeek: else分支缺少错误日志
+    } else {
+        Warn("LinkedStack_Push: Invalid LinkedStackHead!");
+    }
     return ret;
 }
 
@@ -82,14 +84,13 @@ ElementType LinkedStack_Pop(LinkedStackHead S) {
 
 /*
  * 删除整个链栈
- * 参数: S - 栈头指针（const修饰可能不恰当）
+ * 参数: S - 栈头指针
  */
-void LinkedStack_Delete(const LinkedStackHead S) {  // DeepSeek: const修饰符与free操作矛盾
+void LinkedStack_Delete(LinkedStackHead S) {
     LinkedStackNodePtr p = S;
     while (p != NULL) {
         LinkedStackNodePtr tmp = p;  // 保存当前节点
         p = p->Next;                // 移动到下一节点
         free(tmp);                  // 释放当前节点
     }
-    // DeepSeek: 该操作会同时删除头节点，需确认是否符合设计预期
 }

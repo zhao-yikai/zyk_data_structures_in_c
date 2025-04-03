@@ -19,10 +19,10 @@ struct LinkedListNode {
  * 创建链表头节点
  * 返回值: 成功返回头节点指针，失败返回NULL
  */
-LinkedListHead Linked_Create(void) {
+LinkedListHead LinkedList_Create(void) {
     LinkedList_Position p = malloc(sizeof(struct LinkedListNode));
     if (!p) {
-        Warn("Linked_Create: Memory Allocation Error!");
+        Warn("LinkedList_Create: Memory Allocation Error!");
         return NULL;
     }
     // DeepSeek: 头节点数据域建议初始化为特殊值（根据ElementType定义）
@@ -36,9 +36,9 @@ LinkedListHead Linked_Create(void) {
  * L: 链表头节点
  * 返回值: 成功返回实际长度，失败返回LINKED_ERROR
  */
-Length Linked_GetLength(LinkedListHead L) {
+Length LinkedList_GetLength(LinkedListHead L) {
     if (!L) {
-        Warn("Linked_GetLength: INVALID LIST!");
+        Warn("LinkedList_GetLength: INVALID LIST!");
         return LINKED_ERROR;
     }
     Length l = 0;
@@ -54,9 +54,9 @@ Length Linked_GetLength(LinkedListHead L) {
  * i: 插入位置
  * 返回值: 成功返回true，失败返回false
  */
-bool Linked_InsertAtNodePosition(LinkedListHead L, ElementType X, int i) {
+bool LinkedList_InsertAtNodePosition(LinkedListHead L, ElementType X, int i) {
     if (!L || i < 1) {  // 位置从1开始计数
-        Warn("Linked_InsertAtNodePosition: INVALID PARAMETERS!");
+        Warn("LinkedList_InsertAtNodePosition: INVALID PARAMETERS!");
         return false;
     }
 
@@ -69,14 +69,13 @@ bool Linked_InsertAtNodePosition(LinkedListHead L, ElementType X, int i) {
     }
 
     if (!pre || cnt != i - 1) {
-        Warn("Linked_InsertAtNodePosition: INVALID POSITION!");
+        Warn("LinkedList_InsertAtNodePosition: INVALID POSITION!");
         return false;
     }
 
-    // DeepSeek: 直接创建新节点，避免使用Linked_Create（可能包含不必要初始化）
     LinkedList_Position tmp = malloc(sizeof(struct LinkedListNode));
     if (!tmp) {
-        Warn("Linked_InsertAtNodePosition: MALLOC ERROR!");
+        Warn("LinkedList_InsertAtNodePosition: MALLOC ERROR!");
         return false;
     }
 
@@ -93,9 +92,9 @@ bool Linked_InsertAtNodePosition(LinkedListHead L, ElementType X, int i) {
  * P: 目标节点指针
  * 返回值: 成功返回true，失败返回false
  */
-bool Linked_InsertAtNodePtr(LinkedListHead L, ElementType X, LinkedList_Position P) {
+bool LinkedList_InsertAtNodePtr(LinkedListHead L, ElementType X, LinkedList_Position P) {
     if (!L || !P) {
-        Warn("Linked_InsertAtNodePtr: INVALID PARAMETERS!");
+        Warn("LinkedList_InsertAtNodePtr: INVALID PARAMETERS!");
         return false;
     }
 
@@ -106,13 +105,13 @@ bool Linked_InsertAtNodePtr(LinkedListHead L, ElementType X, LinkedList_Position
     }
 
     if (!pre) {
-        Warn("Linked_InsertAtNodePtr: NODE NOT FOUND!");
+        Warn("LinkedList_InsertAtNodePtr: NODE NOT FOUND!");
         return false;
     }
 
     LinkedList_Position tmp = malloc(sizeof(struct LinkedListNode));
     if (!tmp) {
-        Warn("Linked_InsertAtNodePtr: MALLOC ERROR!");
+        Warn("LinkedList_InsertAtNodePtr: MALLOC ERROR!");
         return false;
     }
 
@@ -128,9 +127,9 @@ bool Linked_InsertAtNodePtr(LinkedListHead L, ElementType X, LinkedList_Position
  * k: 元素位置（从0开始计数）
  * 返回值: 成功返回元素值，失败返回LINKED_ERROR
  */
-ElementType Linked_GetElementAtPosition(LinkedListHead L, int k) {
+ElementType LinkedList_GetElementAtPosition(LinkedListHead L, int k) {
     if (!L || k < 0) {
-        Warn("Linked_GetElementAtPosition: INVALID PARAMETERS!");
+        Warn("LinkedList_GetElementAtPosition: INVALID PARAMETERS!");
         return LINKED_ERROR;
     }
 
@@ -149,7 +148,7 @@ ElementType Linked_GetElementAtPosition(LinkedListHead L, int k) {
  * p: 目标节点指针
  * 返回值: 成功返回元素值，失败返回LINKED_ERROR
  */
-ElementType Linked_GetElementAtNodePtr(LinkedList_Position p) {
+ElementType LinkedList_GetElementAtNodePtr(LinkedList_Position p) {
     return p ? p->Data : LINKED_ERROR;
 }
 
@@ -159,10 +158,10 @@ ElementType Linked_GetElementAtNodePtr(LinkedList_Position p) {
  * X: 目标元素值
  * 返回值: 成功返回节点指针，失败返回NULL
  */
-LinkedList_Position Linked_Find(LinkedListHead L, ElementType X) {
+LinkedList_Position LinkedList_Find(LinkedListHead L, ElementType X) {
     if (!L) return NULL;
 
-    // DeepSeek: 应该从第一个有效节点开始查找
+    // 从第一个有效节点开始查找
     LinkedList_Position p = L->Next;
     while (p && p->Data != X) {
         p = p->Next;
@@ -176,9 +175,9 @@ LinkedList_Position Linked_Find(LinkedListHead L, ElementType X) {
  * i: 删除位置（从1开始计数）
  * 返回值: 成功返回true，失败返回false
  */
-bool Linked_DeleteAtNodePosition(LinkedListHead L, int i) {
+bool LinkedList_DeleteAtNodePosition(LinkedListHead L, int i) {
     if (!L || i < 1) {
-        Warn("Linked_DeleteAtNodePosition: INVALID PARAMETERS!");
+        Warn("LinkedList_DeleteAtNodePosition: INVALID PARAMETERS!");
         return false;
     }
 
@@ -190,7 +189,7 @@ bool Linked_DeleteAtNodePosition(LinkedListHead L, int i) {
     }
 
     if (!pre || !pre->Next || cnt != i - 1) {
-        Warn("Linked_DeleteAtNodePosition: INVALID POSITION!");
+        Warn("LinkedList_DeleteAtNodePosition: INVALID POSITION!");
         return false;
     }
 
@@ -206,9 +205,9 @@ bool Linked_DeleteAtNodePosition(LinkedListHead L, int i) {
  * P: 要删除的节点指针
  * 返回值: 成功返回true，失败返回false
  */
-bool Linked_DeleteAtNodePtr(LinkedListHead L, LinkedList_Position P) {
+bool LinkedList_DeleteAtNodePtr(LinkedListHead L, LinkedList_Position P) {
     if (!L || !P) {
-        Warn("Linked_DeleteAtNodePtr: INVALID PARAMETERS!");
+        Warn("LinkedList_DeleteAtNodePtr: INVALID PARAMETERS!");
         return false;
     }
 
@@ -218,7 +217,7 @@ bool Linked_DeleteAtNodePtr(LinkedListHead L, LinkedList_Position P) {
     }
 
     if (!pre) {
-        Warn("Linked_DeleteAtNodePtr: NODE NOT FOUND!");
+        Warn("LinkedList_DeleteAtNodePtr: NODE NOT FOUND!");
         return false;
     }
 
@@ -227,17 +226,18 @@ bool Linked_DeleteAtNodePtr(LinkedListHead L, LinkedList_Position P) {
     return true;
 }
 
-// DeepSeek: 建议添加的销毁链表函数
-/*
-bool Linked_Destroy(LinkedListHead L) {
+
+bool LinkedList_Destroy(LinkedListHead L) {
     if (!L) return false;
 
-    LinkedList_Position p = L;
+    LinkedListNodePtr p = L;
     while (p) {
-        LinkedList_Position tmp = p;
+        LinkedListNodePtr tmp = p;
         p = p->Next;
         free(tmp);
     }
     return true;
 }
-*/
+
+
+

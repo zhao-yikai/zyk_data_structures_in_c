@@ -1,7 +1,7 @@
 /*
     SeqQueue.c
     Functions of Sequential Queues
-    Created By YikaiSays on Mar 28 2025
+    Created By YikaiSays on Apr 3 2025
 */
 
 #include <SeqQueue.h>
@@ -9,7 +9,7 @@
 
 #include "Warn.h"
 
-typedef int Position; // DeepSeek: 建议使用无符号类型（如size_t）避免负数
+typedef size_t Position;
 
 // 顺序队列结构体定义
 struct SeqQueueNode {
@@ -19,22 +19,6 @@ struct SeqQueueNode {
     int MaxSize; // 队列最大容量
 };
 
-
-// SeqQueue SeqQueue_Create(int MaxSize) {
-//     SeqQueue Q = malloc(sizeof(struct SeqQueueNode));
-//     // DeepSeek: 高危-未检查malloc返回值（可能返回NULL）
-//     // DeepSeek: 未校验MaxSize有效性（应>0）
-//
-//     Q->Data = malloc(MaxSize * sizeof(ElementType));
-//     // DeepSeek: 高危-未检查malloc返回值
-//     // DeepSeek: 实际可用容量为MaxSize-1（循环队列特性）
-//
-//     Q->Front = Q->Rear = 0;  // 初始化空队列
-//     Q->MaxSize = MaxSize;
-//     return Q;  // DeepSeek: 当malloc失败时返回部分初始化的结构体
-// }
-
-// Apr 3 重写
 
 /*
  * 创建空队列
@@ -57,6 +41,7 @@ SeqQueue SeqQueue_Create(int MaxSize) {
     return Q;
 }
 
+
 /*
  * 判断队列是否已满
  * 参数: Q - 队列指针
@@ -73,6 +58,7 @@ bool SeqQueue_IsFull(SeqQueue Q) {
         return true;
     return false;
 }
+
 
 /*
  * 元素入队操作
@@ -96,13 +82,13 @@ bool SeqQueue_Enqueue(SeqQueue Q, ElementType X) {
     return true;
 }
 
+
 /*
  * 判断队列是否为空
  * 参数: Q - 队列指针
  * 返回值: 空队列返回true
  * Apr 3 重构
  */
-
 bool SeqQueue_IsEmpty(SeqQueue Q) {
     if (!Q) {
         // 判断队列指针是否为空
@@ -115,18 +101,6 @@ bool SeqQueue_IsEmpty(SeqQueue Q) {
     return false;
 }
 
-
-// ElementType SeqQueue_Dequeue(SeqQueue Q) {
-//     ElementType Dequeued = SEQ_QUEUE_ERROR;
-//     // DeepSeek: 未检查Q有效性（嵌套调用风险）
-//     if (!SeqQueue_IsEmpty(Q)) {
-//         Q->Front = (Q->Front + 1) % Q->MaxSize; // 移动队首指针
-//         Dequeued = Q->Data[Q->Front]; // 取出新队首元素
-//     }
-//     // DeepSeek: 1.无法区分"空队列"和"无效队列指针"
-//     // DeepSeek: 2.建议添加错误日志输出
-//     return Dequeued;
-// }
 
 /*
  * 元素出队操作
@@ -145,6 +119,7 @@ ElementType SeqQueue_Dequeue(SeqQueue Q) {
     }
     return Q->Data[Q->Front = (Q->Front + 1) % Q->MaxSize];
 }
+
 
 /*
  * 队列销毁操作

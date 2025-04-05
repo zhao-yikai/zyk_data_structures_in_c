@@ -17,19 +17,6 @@ typedef double ElementType;
 /* 前向声明二叉树节点指针类型 */
 typedef struct LinkedBinaryTreeNode * LinkedBinaryTreePtr;
 
-/**
- * @struct LinkedBinaryTreeNode
- * @brief 链表式二叉树节点结构定义
- *
- * @param Data  节点存储的数据元素
- * @param Left  左子树指针（指向左孩子节点）
- * @param Right 右子树指针（指向右孩子节点）
- */
-struct LinkedBinaryTreeNode {
-    ElementType Data;
-    LinkedBinaryTreePtr Left;
-    LinkedBinaryTreePtr Right;
-};
 
 /* 二叉树类型定义（指向根节点的指针） */
 typedef LinkedBinaryTreePtr LinkedBinaryTree;

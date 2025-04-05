@@ -155,6 +155,20 @@ LinkedBinaryTree QFT_Dequeue(QFT Q) {
 /*━━━━━━━━━━━━━━━━━━━━━ 二叉树操作实现 ━━━━━━━━━━━━━━━━━━━━━*/
 
 /**
+ * @struct LinkedBinaryTreeNode
+ * @brief 链表式二叉树节点结构定义
+ *
+ * @param Data  节点存储的数据元素
+ * @param Left  左子树指针（指向左孩子节点）
+ * @param Right 右子树指针（指向右孩子节点）
+ */
+struct LinkedBinaryTreeNode {
+    ElementType Data;
+    LinkedBinaryTreePtr Left;
+    LinkedBinaryTreePtr Right;
+};
+
+/**
  * @brief 创建基础二叉树节点
  *
  * 时间复杂度: O(1)

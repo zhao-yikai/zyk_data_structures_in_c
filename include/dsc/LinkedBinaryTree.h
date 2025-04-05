@@ -17,7 +17,6 @@ typedef double ElementType;
 /* 前向声明二叉树节点指针类型 */
 typedef struct LinkedBinaryTreeNode * LinkedBinaryTreePtr;
 
-
 /* 二叉树类型定义（指向根节点的指针） */
 typedef LinkedBinaryTreePtr LinkedBinaryTree;
 

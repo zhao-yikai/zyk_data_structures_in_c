@@ -42,6 +42,8 @@ set(DATA_STRUCTURES
         LinkedStack
         SeqQueue
         LinkedQueue
+        SeqBinaryTree
+        LinkedBinaryTree
 )
 
 foreach (ds ${DATA_STRUCTURES})

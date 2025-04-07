@@ -114,4 +114,6 @@ void LinkedBinaryTree_PostOrderTraversal(LinkedBinaryTree LBT, ElementType (*vis
  */
 void LinkedBinaryTree_LevelOrderTraversal(LinkedBinaryTree LBT, ElementType (*visit)(LinkedBinaryTree));
 
+ElementType LinkedBinaryTree_GetNodeData(LinkedBinaryTree LBT);
+
 #endif //LINKEDBINARYTREE_H

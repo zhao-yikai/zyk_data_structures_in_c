@@ -342,3 +342,10 @@ void LinkedBinaryTree_LevelOrderTraversal(LinkedBinaryTree LBT, ElementType (*vi
     }
 }
 
+ElementType LinkedBinaryTree_GetNodeData(LinkedBinaryTree T) {
+    if (!T) {
+        Warn("LinkedBinaryTree_GetNodeData: Invalid LinkedBinaryTree!");
+        return 0;
+    }
+    return T->Data;
+}

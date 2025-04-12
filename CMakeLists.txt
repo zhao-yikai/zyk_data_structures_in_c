@@ -44,6 +44,7 @@ set(DATA_STRUCTURES
         LinkedQueue
         SeqBinaryTree
         LinkedBinaryTree
+        Sort
 )
 
 foreach (ds ${DATA_STRUCTURES})

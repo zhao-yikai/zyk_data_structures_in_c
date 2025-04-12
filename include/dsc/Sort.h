@@ -5,6 +5,7 @@
 #ifndef SORT_H
 #define SORT_H
 
+#include <stdlib.h>
 #include <float.h>
 #define SORT_ERROR (-DBL_MAX)
 
@@ -37,7 +38,7 @@ void HeapSort(ElementType* Arr, int length);
  * @note 时间复杂度：O(n²) 稳定排序 原地排序
  *       最佳情况O(n)，适合基本有序的小规模数据集
  */
-void InsertionSort(ElementType* Arr, int length);
+void InsertionSort(ElementType *Arr, size_t length);
 
 
 /**
@@ -63,12 +64,15 @@ void BubbleSort(ElementType* Arr, int length);
 
 /**
  * @brief 快速排序 - 分治法，选择基准元素进行分区排序
+ *        原理： 将未排序的元素根据一个作为基准的“主元”(pivot)分为两个子序列，
+ *              其中一个子序列的记录均大于主元， 而另一个子序列均小于主元，
+ *              然后递归地对这两个子序列用类似的方法进行排序。
  * @param Arr 待排序数组指针
  * @param length 数组元素个数
  * @note 平均时间复杂度：O(n log n) 不稳定排序 原地排序
  *       实际中最快的通用排序算法，注意递归深度优化
  */
-void QuickSort(ElementType* Arr, int length);
+void QuickSort(ElementType *Arr, size_t length);
 
 
 /**

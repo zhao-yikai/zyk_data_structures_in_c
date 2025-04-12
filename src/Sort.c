@@ -96,8 +96,9 @@ void BubbleSort(ElementType *Arr, int length) {
  *       实际中最快的通用排序算法，注意递归深度优化
  */
 ElementType Median0fThree(ElementType *Arr, const size_t Left, const size_t Right) {
-    if (!Arr || Right < Left) { return SORT_ERROR; }
-    const size_t Center = (Left + Right) / 2;
+    if (!Arr) { return -1; }
+    if (Right<Left) { return Arr[Right]; }
+    const size_t Center = Left + (Right - Left) / 2;
     if (Arr[Left] > Arr[Center]) { Swap(&Arr[Center], &Arr[Left]); }
     if (Arr[Left] > Arr[Right]) { Swap(&Arr[Left], &Arr[Right]); }
     if (Arr[Center] > Arr[Right]) { Swap(&Arr[Center], &Arr[Right]); }
@@ -108,16 +109,16 @@ ElementType Median0fThree(ElementType *Arr, const size_t Left, const size_t Righ
 
 void QuickSortCore(ElementType *Arr, const size_t Left, const size_t Right) {
     // 核心递归函数
-    if (!Arr || Right < Left) { return; }
-    const long Cutoff = 65536;
+    if (!Arr || Right <= Left) { return; }
+    const long Cutoff = 64;
     if (Right - Left >= Cutoff) {
         ElementType Pivot = Median0fThree(Arr, Left, Right);
         size_t Low = Left;
         size_t High = Right - 1;
         while (true) {
             // 在选择Pivot的过程中， 已经保证最小的元素在Left的位置上， 此处直接开始比较第二个值
-            while (Arr[++Low] < Pivot) {}
-            while (Arr[--High] > Pivot) {}
+            while (Low < Right && Arr[++Low] < Pivot) {}
+            while (High > Left && Arr[--High] > Pivot) {}
             if (Low < High) { Swap(&Arr[Low], &Arr[High]); } else { break; }
         }
         Swap(&Arr[Right - 1], &Arr[Low]); // 将基准换到正确的位置

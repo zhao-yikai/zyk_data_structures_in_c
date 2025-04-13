@@ -54,7 +54,7 @@ int main() {
     //     return EXIT_FAILURE;
     // }
 
-    for (uint64_t element_count = 1; element_count<2^32; element_count*=2) {
+    for (uint64_t element_count = 1; element_count<4294967296; element_count*=2) {
         printf("-----------------\n");
         printf("元素个数: %llu\n", element_count);
         // 检查实际可分配的内存大小

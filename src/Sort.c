@@ -130,3 +130,15 @@ void QuickSortCore(ElementType *Arr, const size_t Left, const size_t Right) {
 }
 
 void QuickSort(ElementType *Arr, const size_t length) { QuickSortCore(Arr, 0, length - 1); }
+
+
+/**
+ * @brief 归并排序 - 分治法，合并两个有序子序列
+ * @param Arr 待排序数组指针
+ * @param length 数组元素个数
+ * @note 时间复杂度：O(n log n) 稳定排序 非原地排序
+ *       需要O(n)额外空间，适合链表排序和大数据外部排序
+ */
+void MergeSort(ElementType* Arr, unsigned length) {
+
+}

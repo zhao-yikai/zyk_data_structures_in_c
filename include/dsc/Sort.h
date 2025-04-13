@@ -82,7 +82,7 @@ void QuickSort(ElementType *Arr, size_t length);
  * @note 时间复杂度：O(n log n) 稳定排序 非原地排序
  *       需要O(n)额外空间，适合链表排序和大数据外部排序
  */
-void MergeSort(ElementType* Arr, int length);
+void MergeSort(ElementType* Arr, unsigned length);
 
 
 /**
@@ -92,7 +92,7 @@ void MergeSort(ElementType* Arr, int length);
  * @note 时间复杂度：O(n + k) 稳定排序 非原地排序
  *       要求数据均匀分布，适合知道数据范围的场景（如0-1小数）
  */
-void BucketSort(ElementType* Arr, int length);
+void BucketSort(ElementType* Arr, unsigned length);
 
 
 /**
@@ -102,7 +102,7 @@ void BucketSort(ElementType* Arr, int length);
  * @note 时间复杂度：O(d*(n+k)) 稳定排序 非原地排序
  *       适合整数或定长字符串排序，d为最大位数
  */
-void RadixSort(ElementType* Arr, int length);
+void RadixSort(ElementType* Arr, unsigned length);
 
 
 /**

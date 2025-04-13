@@ -8,7 +8,7 @@
 
 #include <stdlib.h>
 
-
+// 交换两个元素
 void Swap(ElementType *a, ElementType *b) {
     ElementType temp = *a;
     *a = *b;
@@ -97,7 +97,7 @@ void BubbleSort(ElementType *Arr, int length) {
  */
 ElementType Median0fThree(ElementType *Arr, const size_t Left, const size_t Right) {
     if (!Arr) { return -1; }
-    if (Right<Left) { return Arr[Right]; }
+    if (Right < Left) { return Arr[Right]; }
     const size_t Center = Left + (Right - Left) / 2;
     if (Arr[Left] > Arr[Center]) { Swap(&Arr[Center], &Arr[Left]); }
     if (Arr[Left] > Arr[Right]) { Swap(&Arr[Left], &Arr[Right]); }
@@ -117,15 +117,17 @@ void QuickSortCore(ElementType *Arr, const size_t Left, const size_t Right) {
         size_t High = Right - 1;
         while (true) {
             // 在选择Pivot的过程中， 已经保证最小的元素在Left的位置上， 此处直接开始比较第二个值
-            while (Low < Right && Arr[++Low] < Pivot) {}
-            while (High > Left && Arr[--High] > Pivot) {}
+            while (Low < Right && Arr[++Low] < Pivot) {
+            }
+            while (High > Left && Arr[--High] > Pivot) {
+            }
             if (Low < High) { Swap(&Arr[Low], &Arr[High]); } else { break; }
         }
         Swap(&Arr[Right - 1], &Arr[Low]); // 将基准换到正确的位置
         QuickSortCore(Arr, Left, Low - 1);
         QuickSortCore(Arr, Low + 1, Right);
     } else {
-        InsertionSort(Arr, Right-Left + 1);
+        InsertionSort(Arr, Right - Left + 1);
     }
 }
 
@@ -139,6 +141,44 @@ void QuickSort(ElementType *Arr, const size_t length) { QuickSortCore(Arr, 0, le
  * @note 时间复杂度：O(n log n) 稳定排序 非原地排序
  *       需要O(n)额外空间，适合链表排序和大数据外部排序
  */
-void MergeSort(ElementType* Arr, unsigned length) {
+void Merge(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right, unsigned RightEnd);
 
+void MergeSortCore(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right);
+
+void MergeSort(ElementType *Arr, unsigned length) {
+    if (!Arr) { return; }
+    if (length == 1) { return; }
+    if (length == 2) { InsertionSort(Arr, length); }
+    ElementType *TempArr = malloc(length * sizeof(ElementType));
+    if (!TempArr) {
+        Warn("MergeSort: Memory Allocation Failed!");
+        return;
+    }
+    MergeSortCore(Arr, TempArr, 0, length - 1);
+    free(TempArr);
+}
+
+void MergeSortCore(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right) {
+    // 核心递归排序函数
+    if (Left >= Right) { return; }
+    unsigned Center = (Left + Right) / 2;
+    MergeSortCore(Arr, TempArr, Left, Center);
+    MergeSortCore(Arr, TempArr, Center + 1, Right);
+    Merge(Arr, TempArr, Left, Center + 1, Right);
+}
+
+void Merge(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right, unsigned RightEnd) {
+    if (!Arr) { return; }
+    if (!TempArr) { return; }
+    const unsigned LeftEnd = Right - 1; // 左边终点位置
+    const unsigned NumOfElements = RightEnd - Left + 1;
+    unsigned Index = Left; // 有序数列起始位置
+
+    while (Left <= LeftEnd && Right <= RightEnd) {
+        if (Arr[Left] <= Arr[Right]) { TempArr[Index++] = Arr[Left++]; }
+        else { TempArr[Index++] = Arr[Right++]; }
+    }
+    while (Left <= LeftEnd) { TempArr[Index++] = Arr[Left++]; }
+    while (Right <= RightEnd) { TempArr[Index++] = Arr[Right++]; }
+    for (int i = 0; i < NumOfElements; ++i, --RightEnd) { Arr[RightEnd] = TempArr[RightEnd]; }
 }

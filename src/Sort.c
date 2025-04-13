@@ -115,18 +115,21 @@ void QuickSortCore(ElementType *Arr, const size_t Left, const size_t Right) {
         ElementType Pivot = Median0fThree(Arr, Left, Right);
         size_t Low = Left;
         size_t High = Right - 1;
+
+        // 进行子集划分
         while (true) {
             // 在选择Pivot的过程中， 已经保证最小的元素在Left的位置上， 此处直接开始比较第二个值
-            while (Low < Right && Arr[++Low] < Pivot) {
-            }
-            while (High > Left && Arr[--High] > Pivot) {
-            }
+            while (Low < Right && Arr[++Low] < Pivot) { }
+            while (High > Left && Arr[--High] > Pivot) { }
             if (Low < High) { Swap(&Arr[Low], &Arr[High]); } else { break; }
         }
         Swap(&Arr[Right - 1], &Arr[Low]); // 将基准换到正确的位置
+
+        // 递归进行排序
         QuickSortCore(Arr, Left, Low - 1);
         QuickSortCore(Arr, Low + 1, Right);
     } else {
+        // 若元素数量过少， 直接调用插入排序进行解决
         InsertionSort(Arr, Right - Left + 1);
     }
 }
@@ -182,3 +185,4 @@ void Merge(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right
     while (Right <= RightEnd) { TempArr[Index++] = Arr[Right++]; }
     for (int i = 0; i < NumOfElements; ++i, --RightEnd) { Arr[RightEnd] = TempArr[RightEnd]; }
 }
+

@@ -7,12 +7,214 @@
 #include "Sort.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 // 交换两个元素
 void Swap(ElementType *a, ElementType *b) {
     ElementType temp = *a;
     *a = *b;
     *b = temp;
+}
+
+/**
+ * @brief TimSort - 混合排序算法（归并+插入），Python内置算法
+ * @param Arr 待排序数组指针
+ * @param length 待排数组长度
+ * @note 时间复杂度：O(n log n) 稳定排序 需要O(n)空间
+ *       特点：利用数据现有有序性（自然游程），适合真实世界数据
+ *       实现要点：
+ *       1. 定义最小游程长度（通常32-64）
+ *       2. 查找自然游程并进行插入排序扩展
+ *       3. 使用归并排序合并游程
+ */
+/* 预分配合并缓冲区 */
+static ElementType* g_merge_buffer = NULL;
+static size_t g_buffer_size = 0;
+
+/* 最小合并分段大小 */
+#define MIN_MERGE 64
+
+/* 运行栈结构体 */
+typedef struct {
+    size_t start;
+    size_t length;
+} Run;
+
+/* 初始化TimSort环境 */
+void TimSort_Init(size_t max_elements) {
+    g_buffer_size = max_elements / 2;
+    g_merge_buffer = malloc(g_buffer_size * sizeof(ElementType));
+}
+
+/* 清理TimSort环境 */
+void TimSort_Cleanup() {
+    free(g_merge_buffer);
+    g_merge_buffer = NULL;
+    g_buffer_size = 0;
+}
+
+/* 计算最小run长度 */
+static size_t ComputeMinrun(size_t n) {
+    size_t r = 0;
+    while (n >= MIN_MERGE) {
+        r |= n & 1;
+        n >>= 1;
+    }
+    return n + r;
+}
+
+/* 反转数组区间 */
+static void Reverse(ElementType* arr, size_t start, size_t end) {
+    while (start < end) {
+        ElementType tmp = arr[start];
+        arr[start++] = arr[end];
+        arr[end--] = tmp;
+    }
+}
+
+/* 二分插入排序 */
+static void BinaryInsertionSort(ElementType* arr, size_t len) {
+    for (size_t i = 1; i < len; ++i) {
+        ElementType key = arr[i];
+        size_t left = 0;
+        size_t right = i;
+
+        while (left < right) {
+            size_t mid = left + (right - left)/2;
+            if (key < arr[mid]) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        size_t shift_pos = i;
+        while (shift_pos > left) {
+            arr[shift_pos] = arr[shift_pos-1];
+            --shift_pos;
+        }
+        arr[left] = key;
+    }
+}
+
+/* 扩展并排序短run */
+static void ExtendAndSort(ElementType* arr, size_t start, size_t minrun, size_t max_pos) {
+    size_t end = start + minrun;
+    if (end > max_pos) end = max_pos;
+
+    BinaryInsertionSort(arr + start, end - start);
+}
+
+/* 智能合并实现 */
+static void SmartMerge(ElementType* arr, Run* left, Run* right) {
+    const size_t l_start = left->start;
+    const size_t l_len = left->length;
+    const size_t r_len = right->length;
+
+    // 使用预分配缓冲区合并
+    if (l_len <= r_len && l_len <= g_buffer_size) {
+        memcpy(g_merge_buffer, arr + l_start, l_len * sizeof(ElementType));
+
+        size_t i = 0, j = 0, k = l_start;
+        const size_t r_start = left->start + left->length;
+
+        while (i < l_len && j < r_len) {
+            arr[k++] = (g_merge_buffer[i] <= arr[r_start + j]) ?
+                g_merge_buffer[i++] : arr[r_start + j++];
+        }
+
+        while (i < l_len) arr[k++] = g_merge_buffer[i++];
+    }
+    else {
+        // 回退到原地合并
+        size_t i = l_start + l_len - 1;
+        size_t j = r_len - 1;
+        size_t k = l_start + l_len + r_len - 1;
+
+        while (j != SIZE_MAX) {
+            if (i != SIZE_MAX && arr[i] > arr[left->start + l_len + j]) {
+                arr[k--] = arr[i--];
+            } else {
+                arr[k--] = arr[left->start + l_len + j--];
+            }
+        }
+    }
+
+    left->length += right->length;
+}
+
+/* 合并栈平衡 */
+static void MergeCollapse(ElementType* arr, Run* stack, size_t* stack_top) {
+    while (*stack_top > 1) {
+        size_t n = *stack_top - 1;
+
+        if (*stack_top >= 3 && stack[n-2].length <= stack[n-1].length + stack[n].length) {
+            if (stack[n-2].length < stack[n].length) {
+                SmartMerge(arr, &stack[n-2], &stack[n-1]);
+                stack[n-2].length += stack[n-1].length;
+                stack[n-1] = stack[n];
+                (*stack_top)--;
+            } else {
+                SmartMerge(arr, &stack[n-1], &stack[n]);
+                (*stack_top)--;
+            }
+        }
+        else if (stack[n-1].length <= stack[n].length) {
+            SmartMerge(arr, &stack[n-1], &stack[n]);
+            (*stack_top)--;
+        }
+        else {
+            break;
+        }
+    }
+}
+
+/* TimSort主函数 */
+void Sort(ElementType* arr, size_t length) {
+    if (length < 2) return;
+
+    const size_t minrun = ComputeMinrun(length);
+    Run stack[48] = {0};
+    size_t stack_top = 0;
+    size_t pos = 0;
+
+    while (pos < length) {
+        size_t run_start = pos;
+
+        // 寻找自然run
+        size_t run_end = pos + 1;
+        while (run_end < length && arr[run_end-1] <= arr[run_end]) {
+            ++run_end;
+        }
+
+        // 处理递减序列
+        if (arr[run_end-1] < arr[run_start]) {
+            Reverse(arr, run_start, run_end-1);
+        }
+
+        size_t current_run_len = run_end - run_start;
+
+        // 扩展短run
+        if (current_run_len < minrun) {
+            const size_t remain = length - pos;
+            ExtendAndSort(arr, run_start, minrun, pos + remain);
+            current_run_len = (remain > minrun) ? minrun : remain;
+            run_end = run_start + current_run_len;
+        }
+
+        // 压入运行栈
+        stack[stack_top++] = (Run){run_start, current_run_len};
+        pos = run_end;
+
+        // 执行合并平衡
+        MergeCollapse(arr, stack, &stack_top);
+    }
+
+    // 强制合并剩余run
+    while (stack_top > 1) {
+        SmartMerge(arr, &stack[stack_top-2], &stack[stack_top-1]);
+        stack_top--;
+    }
 }
 
 /**
@@ -144,7 +346,7 @@ void QuickSort(ElementType *Arr, const size_t length) { QuickSortCore(Arr, 0, le
  * @note 时间复杂度：O(n log n) 稳定排序 非原地排序
  *       需要O(n)额外空间，适合链表排序和大数据外部排序
  */
-void Merge(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right, unsigned RightEnd);
+void MergeSort_Merge(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right, unsigned RightEnd);
 
 void MergeSortCore(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right);
 
@@ -167,10 +369,10 @@ void MergeSortCore(ElementType *Arr, ElementType *TempArr, unsigned Left, unsign
     unsigned Center = (Left + Right) / 2;
     MergeSortCore(Arr, TempArr, Left, Center);
     MergeSortCore(Arr, TempArr, Center + 1, Right);
-    Merge(Arr, TempArr, Left, Center + 1, Right);
+    MergeSort_Merge(Arr, TempArr, Left, Center + 1, Right);
 }
 
-void Merge(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right, unsigned RightEnd) {
+void MergeSort_Merge(ElementType *Arr, ElementType *TempArr, unsigned Left, unsigned Right, unsigned RightEnd) {
     if (!Arr) { return; }
     if (!TempArr) { return; }
     const unsigned LeftEnd = Right - 1; // 左边终点位置

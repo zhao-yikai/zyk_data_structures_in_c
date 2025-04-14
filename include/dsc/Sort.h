@@ -115,6 +115,6 @@ void RadixSort(ElementType* Arr, unsigned length);
  *       2. 查找自然游程并进行插入排序扩展
  *       3. 使用归并排序合并游程
  */
-void Sort(ElementType* Arr); // TimSort
+void Sort(ElementType* Arr, size_t length); // TimSort
 
 #endif //SORT_H

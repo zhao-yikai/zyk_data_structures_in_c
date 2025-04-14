@@ -85,9 +85,10 @@ int main() {
 
         // 调用排序算法（需确保Sort.h中的函数参数类型为size_t）
         clock_t t1 = clock();
-        // QuickSort(my_array, (size_t)element_count);
+        QuickSort(my_array, (size_t)element_count);
         // InsertionSort(my_array, (size_t)element_count);
-        MergeSort(my_array, element_count);
+        // MergeSort(my_array, element_count);
+        // Sort(my_array, element_count);
         clock_t t2 = clock();
 
         // 打印部分结果防止溢出
@@ -100,6 +101,8 @@ int main() {
 
         free(my_array);
     }
+
+
 
 
     return EXIT_SUCCESS;

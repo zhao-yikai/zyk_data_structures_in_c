@@ -104,17 +104,4 @@ void BucketSort(ElementType* Arr, unsigned length);
  */
 void RadixSort(ElementType* Arr, unsigned length);
 
-
-/**
- * @brief TimSort - 混合排序算法（归并+插入），Python内置算法
- * @param Arr 待排序数组指针
- * @note 时间复杂度：O(n log n) 稳定排序 需要O(n)空间
- *       特点：利用数据现有有序性（自然游程），适合真实世界数据
- *       实现要点：
- *       1. 定义最小游程长度（通常32-64）
- *       2. 查找自然游程并进行插入排序扩展
- *       3. 使用归并排序合并游程
- */
-void Sort(ElementType* Arr, size_t length); // TimSort
-
 #endif //SORT_H

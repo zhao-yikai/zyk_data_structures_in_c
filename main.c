@@ -53,7 +53,7 @@ int main() {
     //     return EXIT_FAILURE;
     // }
 
-    for (uint64_t element_count = 1; element_count<(1ULL << 16); element_count*=2) {
+    for (uint64_t element_count = 1; element_count<(1ULL << 31); element_count*=2) {
         printf("-----------------\n");
         printf("元素个数: %llu\n", element_count);
         // 检查实际可分配的内存大小
@@ -79,13 +79,11 @@ int main() {
             fprintf(stderr, "警告：元素数量超过INT_MAX，请确保排序函数支持size_t类型\n");
         }
 
-
         // 调用排序算法（需确保Sort.h中的函数参数类型为size_t）
         clock_t t1 = clock();
-        // QuickSort(my_array, (size_t)element_count);
+        QuickSort(my_array, (size_t)element_count);
         // InsertionSort(my_array, (size_t)element_count);
         // MergeSort(my_array, element_count);
-        Sort(my_array, element_count);
         clock_t t2 = clock();
 
         // 打印部分结果防止溢出

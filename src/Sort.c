@@ -9,93 +9,184 @@
 #include <stdlib.h>
 #include <string.h>
 
-// 交换两个元素
+/**
+ * @brief Swap two elements of type ElementType.
+ *
+ * This function takes two pointers to ElementType variables and exchanges their values.
+ * It uses a temporary variable to hold the value of one of the elements during the swap process.
+ *
+ * @param a Pointer to the first ElementType variable.
+ * @param b Pointer to the second ElementType variable.
+ *
+ * @note This function modifies the original variables pointed to by `a` and `b`.
+ *       It assumes that `a` and `b` are valid pointers to ElementType variables.
+ */
 void Swap(ElementType *a, ElementType *b) {
+    // Store the value of the first element in a temporary variable
     ElementType temp = *a;
+    // Assign the value of the second element to the first element
     *a = *b;
+    // Assign the value of the temporary variable to the second element
     *b = temp;
 }
 
 
+
 /**
- * @brief 选择排序 - 每次选择最小元素放到已排序序列末尾
- * @param Arr 待排序数组指针
- * @param length 数组元素个数
- * @note 时间复杂度：O(n²) 不稳定排序 原地排序
- *       适用场景：小规模数据或交换成本高的场景
+ * @brief Selection Sort - Select the smallest element in each iteration and place it at the end of the sorted sequence.
+ *
+ * This function implements the selection sort algorithm. Selection sort divides the input array into two parts:
+ * a sorted subarray at the beginning and an unsorted subarray at the end. In each iteration, it finds the minimum
+ * element from the unsorted subarray and swaps it with the first element of the unsorted subarray, effectively
+ * expanding the sorted subarray by one element.
+ *
+ * @param Arr Pointer to the array to be sorted. The elements in this array should be of type `ElementType`.
+ * @param length The number of elements in the array. It determines the range of the array to be sorted.
+ *
+ * @note Time complexity: O(n²), where n is the number of elements in the array. This algorithm is not stable,
+ *       meaning that the relative order of equal elements may not be preserved. It is an in-place sorting algorithm,
+ *       which means it does not require additional space proportional to the input size. It is suitable for
+ *       small-scale data or scenarios where the cost of swapping elements is high.
+ *
+ * @warning If the input array pointer `Arr` is `NULL`, a warning message will be logged, and the function will return
+ *          immediately.
+ * @warning If the input `length` is less than or equal to 0, a warning message will be logged, and the function will
+ *          return immediately.
  */
 void SelectionSort(ElementType *Arr, const int length) {
+    // Check if the input array pointer is NULL
     if (!Arr) {
+        // Log a warning if the array pointer is invalid
         Warn("SelectionSort: Invalid Array!");
         return;
     }
+    // Check if the input length is less than or equal to 0
     if (length <= 0) {
+        // Log a warning if the length is invalid
         Warn("SelectionSort: Invalid Length!");
         return;
     }
+    // Outer loop: Iterate through the array to expand the sorted subarray
     for (int i = 0; i < length; ++i) {
+        // Inner loop: Find the minimum element from the unsorted subarray
         for (int j = i + 1; j < length; ++j) {
-            if (Arr[j] < Arr[i]) { Swap(Arr + i, Arr + j); }
+            // If a smaller element is found, swap it with the current element
+            if (Arr[j] < Arr[i]) {
+                Swap(Arr + i, Arr + j);
+            }
         }
     }
 }
 
+
 /**
- * @brief 插入排序 - 将元素插入到已排序序列的合适位置
- * @param Arr 待排序数组指针
- * @param length 数组元素个数
- * @note 时间复杂度：O(n²) 稳定排序 原地排序
- *       最佳情况O(n)，适合基本有序的小规模数据集
+ * @brief Insertion Sort - Insert an element into the appropriate position in the sorted sequence.
+ *
+ * This function implements the insertion sort algorithm. Insertion sort builds the final sorted array one item at
+ * a time.
+ * It iterates through the array, taking each element and inserting it into its correct position in the already sorted
+ * part of the array.
+ *
+ * @param Arr Pointer to the array to be sorted. The elements in this array should be of type `ElementType`.
+ * @param length The number of elements in the array. It determines the range of the array to be sorted.
+ *
+ * @note Time complexity: O(n²) in the average and worst cases, but O(n) in the best case (when the array is already
+ * sorted).
+ *       It is a stable sorting algorithm, meaning that the relative order of equal elements is preserved.
+ *       It is an in-place sorting algorithm, which means it does not require additional space proportional to the input
+ *       size.
+ *       It is suitable for small-scale datasets or datasets that are nearly sorted.
+ *
+ * @warning If the input array pointer `Arr` is `NULL`, a warning message will be logged, and the function will return
+ *          immediately.
+ * @warning If the input `length` is less than or equal to 0, a warning message will be logged, and the function will
+ *          return immediately.
  */
 void InsertionSort(ElementType *Arr, const size_t length) {
+    // Check if the input array pointer is NULL
     if (!Arr) {
+        // Log a warning if the array pointer is invalid
         Warn("InsertionSort: Invalid Array!");
         return;
     }
+    // Check if the input length is less than or equal to 0
     if (length <= 0) {
+        // Log a warning if the length is invalid
         Warn("InsertionSort: Invalid Length!");
         return;
     }
+    // Iterate through the array starting from the second element
     for (size_t i = 1; i < length; ++i) {
+        // Store the current element in a temporary variable
         ElementType temp = Arr[i];
+        // Declare a variable to track the position to insert the element
         size_t j;
-        for (j = i; j > 0 && temp < Arr[j - 1]; --j) { Arr[j] = Arr[j - 1]; }
+        // Shift elements greater than the current element to the right
+        for (j = i; j > 0 && temp < Arr[j - 1]; --j) {
+            Arr[j] = Arr[j - 1];
+        }
+        // Insert the current element into its correct position
         Arr[j] = temp;
     }
 }
 
+
 /**
- * @brief 冒泡排序 - 通过相邻元素比较交换进行排序
- * @param Arr 待排序数组指针
- * @param length 数组元素个数
- * @note 时间复杂度：O(n²) 稳定排序 原地排序
- *       优化后可添加提前终止标志，适合教学演示用途
+ * @brief Implements the bubble sort algorithm to sort an array.
+ *
+ * Bubble sort is a simple sorting algorithm that repeatedly steps through the list to be sorted,
+ * compares each pair of adjacent items and swaps them if they are in the wrong order.
+ * The pass through the list is repeated until the list is sorted.
+ *
+ * @param Arr Pointer to the array to be sorted. The elements in this array should be of type `ElementType`.
+ * @param length The number of elements in the array. It determines the range of the array to be sorted.
+ *
+ * @note The time complexity of this algorithm is O(n²), where n is the number of elements in the array.
+ *       It is a stable sorting algorithm, meaning that the relative order of equal elements is preserved.
+ *       It is an in - place sorting algorithm, which means it does not require additional space proportional to the
+ *       input size.
+ *       This algorithm can be optimized by adding an early termination flag. It is mainly used for teaching
+ *       demonstration purposes.
+ *
+ * @warning If the input array pointer `Arr` is `NULL`, a warning message will be logged, and the function will return
+ *          immediately.
+ * @warning If the input `length` is less than or equal to 0, a warning message will be logged, and the function will
+ *          return immediately.
  */
 void BubbleSort(ElementType *Arr, int length) {
+    // Check if the input array pointer is NULL
     if (!Arr) {
+        // Log a warning if the array pointer is invalid
         Warn("BubbleSort: Invalid Array!");
         return;
     }
+    // Check if the input length is less than or equal to 0
     if (length <= 0) {
+        // Log a warning if the length is invalid
         Warn("BubbleSort: Invalid Length!");
         return;
     }
+    // Outer loop controls the number of passes
     for (int i = length; i > 0; --i) {
+        // Inner loop compares adjacent elements
         for (int j = 0; j < i - 1; ++j) {
+            // Swap adjacent elements if they are in the wrong order
             if (Arr[j] > Arr[j + 1]) { Swap(Arr + j, Arr + j + 1); }
         }
     }
 }
 
+
 /**
- * @brief 快速排序 - 分治法，选择基准元素进行分区排序
- *        原理： 将未排序的元素根据一个作为基准的“主元”(pivot)分为两个子序列，
- *              其中一个子序列的记录均大于主元， 而另一个子序列均小于主元，
- *              然后递归地对这两个子序列用类似的方法进行排序。
- * @param Arr 待排序数组指针
- * @param length 数组元素个数
- * @note 平均时间复杂度：O(n log n) 不稳定排序 原地排序
- *       实际中最快的通用排序算法，注意递归深度优化
+ * @brief Quick Sort - A divide-and-conquer algorithm that partitions the array around a pivot element.
+ *        Principle: Divide the unsorted elements into two sub-sequences based on a "pivot" element.
+ *                   One sub-sequence contains elements greater than the pivot, and the other contains elements smaller
+ *                   than the pivot.
+ *                   Then recursively sort these two sub-sequences using a similar method.
+ * @param Arr Pointer to the array to be sorted.
+ * @param length The number of elements in the array.
+ * @note Average time complexity: O(n log n). Unstable sorting. In-place sorting.
+ *       It is the fastest general-purpose sorting algorithm in practice. Pay attention to recursive depth optimization.
  */
 
 /**
@@ -149,10 +240,11 @@ ElementType Median0fThree(ElementType *Arr, const size_t Left, const size_t Righ
  *       size.
  *       The `Median0fThree` function is used to select the pivot element, which helps to reduce the probability of
  *       worst-case performance.
- *       If the array pointer is NULL or the right index is less than or equal to the left index, the function returns immediately.
+ *       If the array pointer is NULL or the right index is less than or equal to the left index, the function returns
+ *       immediately.
  */
 void QuickSortCore(ElementType *Arr, const size_t Left, const size_t Right) {
-    // 核心递归函数
+    // Core recursive function
     if (!Arr || Right <= Left) {
         // If the array pointer is NULL or the sub-array has 0 or 1 element, return immediately
         return;

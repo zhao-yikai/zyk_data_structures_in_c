@@ -124,10 +124,27 @@ bool LinkedStack_isEmpty(LinkedStackHead S) {
     return false;
 }
 
-/*
- * 弹出栈顶元素
- * 参数: S - 栈头指针
- * 返回值: 成功返回元素值，失败返回错误码
+/**
+ * @brief Removes and returns the top element from the linked stack.
+ *
+ * This function attempts to pop the top element from the stack. It first validates
+ * the stack head pointer, then checks if the stack is empty. If successful,
+ * it removes the top node, retrieves its data, and properly updates the stack pointers.
+ *
+ * @param S Pointer to the head of the linked stack. Must be a valid stack head
+ *          created by LinkedStack_Create().
+ *
+ * @return ElementType The value of the popped element if successful. Returns
+ *         LINKED_STACK_ERROR if:
+ *         - The stack head pointer is invalid (NULL)
+ *         - The stack is empty
+ *
+ * @note The caller should:
+ *       1. Always check the validity of the stack head pointer before calling
+ *       2. Handle the LINKED_STACK_ERROR return value appropriately
+ *       3. Be aware that this function will free the memory of the popped node
+ *       4. The function does NOT log warnings for empty stack conditions (caller
+ *          should check isEmpty() first if this is important)
  */
 ElementType LinkedStack_Pop(LinkedStackHead S) {
     if (!S) { return LINKED_STACK_ERROR; }

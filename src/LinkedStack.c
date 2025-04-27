@@ -7,62 +7,121 @@
 #include "LinkedStack.h"
 #include "Warn.h"
 
-// 链栈节点结构定义
+/**
+ * @struct LinkedStackNode
+ * @brief Defines the structure of a node in a linked stack.
+ *
+ * This structure represents a single node in a linked stack. Each node contains
+ * a data element and a pointer to the next node in the stack.
+ *
+ * @var LinkedStackNode::Data
+ * The data element stored in the node. The type of this data is defined by `ElementType`.
+ *
+ * @var LinkedStackNode::Next
+ * A pointer to the next node in the linked stack. If this is `NULL`, it indicates
+ * the end of the stack.
+ */
 struct LinkedStackNode {
     ElementType Data;        // 节点存储的数据
     LinkedStackNodePtr Next; // 指向下一个节点的指针
 };
 
-/*
- * 创建链栈头节点（哨兵节点）
- * 返回值: 成功返回头节点指针，失败返回NULL
+/**
+ * @brief Creates a new head node (sentinel node) for a linked stack.
+ *
+ * This function allocates memory for a new head node of a linked stack.
+ * If the memory allocation is successful, it initializes the `Next` pointer
+ * of the head node to `NULL`, indicating an empty stack. If the allocation fails,
+ * it logs a warning message using the `Warn` function.
+ *
+ * @return LinkedStackHead A pointer to the newly created head node if successful,
+ *                         or `NULL` if memory allocation fails.
+ *
+ * @note The caller should check the return value to ensure that the head node
+ *       was created successfully. If the return value is `NULL`, the operation failed.
  */
 LinkedStackHead LinkedStack_Create() {
+    // Allocate memory for the head node of the linked stack
     LinkedStackHead S = malloc(sizeof(struct LinkedStackNode));
     if (S) {
-        S->Next = NULL;  // 初始化空栈
+        // Initialize the Next pointer to NULL, indicating an empty stack
+        S->Next = NULL;
     } else {
+        // Log a warning message if memory allocation fails
         Warn("LinkedStack_Create: MALLOC ERROR!");
     }
-    return S;  // DeepSeek: 调用者需要检查返回值是否为NULL
+    // Return the pointer to the head node, which may be NULL if allocation failed
+    return S;
 }
+
 
 /*
  * 元素压栈操作
  * 参数: S - 栈头指针，X - 入栈元素
  * 返回值: 成功返回true，失败返回false
  */
+/**
+ * @brief Pushes an element onto the top of the linked stack.
+ *
+ * This function attempts to add a new element to the top of the specified linked stack.
+ * It first checks if the provided stack head pointer is valid. If not, it logs a warning message.
+ * Then it allocates memory for a new node. If the memory allocation fails, it logs a warning message.
+ * If the allocation is successful, it inserts the new node at the top of the stack using the head insertion method.
+ *
+ * @param S A pointer to the head of the linked stack.
+ * @param X The element to be pushed onto the stack.
+ *
+ * @return bool Returns `true` if the element is successfully pushed onto the stack, `false` otherwise.
+ *
+ * @note The caller should check the return value to ensure that the operation was successful.
+ *       If the stack head pointer is invalid or memory allocation fails, the operation will fail.
+ */
 bool LinkedStack_Push(LinkedStackHead S, ElementType X) {
     bool ret = false;
-    // DeepSeek: 建议添加参数校验（if (!S) { Warn... }）
+    // Check if the stack head pointer is valid
     if (S) {
+        // Allocate memory for a new node
         LinkedStackHead tmp = malloc(sizeof(struct LinkedStackNode));
         if (!tmp) {
+            // Log a warning message if memory allocation fails
             Warn("LinkedStack_Push: MALLOC ERROR!");
         } else {
-            // 头插法插入新节点
-            tmp->Data = X;          // 存储数据
-            tmp->Next = S->Next;    // 新节点指向原栈顶
-            S->Next = tmp;          // 更新头节点指针
+            // Insert the new node at the top of the stack using the head insertion method
+            tmp->Data = X;          // Store the data
+            tmp->Next = S->Next;    // The new node points to the original top of the stack
+            S->Next = tmp;          // Update the head node pointer
             ret = true;
         }
     } else {
+        // Log a warning message if the stack head pointer is invalid
         Warn("LinkedStack_Push: Invalid LinkedStackHead!");
     }
     return ret;
 }
 
-/*
- * 判断栈是否为空
- * 参数: S - 栈头指针
- * 返回值: 空栈返回true
+/**
+ * @brief Checks if the linked stack is empty.
+ *
+ * This function determines whether the specified linked stack is empty.
+ * It first validates the provided stack head pointer. If the pointer is `NULL`,
+ * it implies an invalid stack, and the function returns `false` to indicate that
+ * the stack is not considered empty in this invalid state. If the pointer is valid,
+ * it checks the `Next` pointer of the head node. If the `Next` pointer is `NULL`,
+ * it means there are no elements in the stack, and the function returns `true`.
+ *
+ * @param S A pointer to the head of the linked stack.
+ *
+ * @return bool Returns `true` if the stack is valid and empty, `false` if the stack
+ *              is either invalid (head pointer is `NULL`) or contains elements.
+ *
+ * @note The caller should ensure that the provided stack head pointer is valid
+ *       to avoid unexpected behavior. Passing a `NULL` pointer will result in
+ *       the function returning `false`, which may not be the expected result.
  */
 bool LinkedStack_isEmpty(LinkedStackHead S) {
-    bool ret = false;
-    // DeepSeek: 高危-未检查S是否为NULL（可能引发空指针崩溃）
-    if (S->Next == NULL)  // 通过头节点的Next指针判断空栈
-        ret = true;
-    return ret;
+    if (!S) {return false;}
+    if (S->Next == NULL) { return true; }
+    return false;
 }
 
 /*
@@ -71,8 +130,8 @@ bool LinkedStack_isEmpty(LinkedStackHead S) {
  * 返回值: 成功返回元素值，失败返回错误码
  */
 ElementType LinkedStack_Pop(LinkedStackHead S) {
+    if (!S) { return LINKED_STACK_ERROR; }
     ElementType retVal = LINKED_STACK_ERROR;
-    // DeepSeek: 调用isEmpty前未检查S有效性（嵌套风险）
     if (!LinkedStack_isEmpty(S)) {
         LinkedStackNodePtr topNode = S->Next;  // 获取栈顶节点
         retVal = topNode->Data;
@@ -82,13 +141,30 @@ ElementType LinkedStack_Pop(LinkedStackHead S) {
     return retVal;
 }
 
-/*
- * 删除整个链栈
- * 参数: S - 栈头指针
+
+/**
+ * @brief Deletes the entire linked stack and frees all allocated memory.
+ *
+ * This function iterates through the linked stack starting from the head node.
+ * It deletes each node in the stack one by one, freeing the memory allocated for each node.
+ * After the function execution, the entire linked stack is removed from memory,
+ * and the stack head pointer becomes invalid.
+ *
+        LinkedStackNodePtr tmp = p;  // Save the current node
+        p = p->Next;                // Move to the next node
+        free(tmp);                  // Free the current node
+    // Iterate through the stack and free each node
+ * @param S A pointer to the head of the linked stack.
+ *
+ * @note The function does not check if the input pointer is `NULL`.
+ *       If a `NULL` pointer is passed, the function will terminate immediately
+ *       without performing any operations.
+ * @note After calling this function, the caller should not use the original stack head pointer
+ *       as the memory has been freed.
  */
 void LinkedStack_Delete(LinkedStackHead S) {
     LinkedStackNodePtr p = S;
-    while (p != NULL) {
+    while (p) {
         LinkedStackNodePtr tmp = p;  // 保存当前节点
         p = p->Next;                // 移动到下一节点
         free(tmp);                  // 释放当前节点

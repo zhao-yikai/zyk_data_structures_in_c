@@ -151,9 +151,6 @@ LinkedBinaryTree QFT_Dequeue(QFT Q) {
     return Dequeue;
 }
 
-
-/*━━━━━━━━━━━━━━━━━━━━━ 二叉树操作实现 ━━━━━━━━━━━━━━━━━━━━━*/
-
 /**
  * @struct LinkedBinaryTreeNode
  * @brief 链表式二叉树节点结构定义
@@ -243,7 +240,7 @@ LinkedBinaryTree LinkedBinaryTree_LevelOrderCreate(void) {
     return LBT;
 }
 
-bool LinkedBinaryTree_isEmpty(LinkedBinaryTree LBT) {
+bool LinkedBinaryTree_isEmpty(const LinkedBinaryTree LBT) {
     if (!LBT) {
         Warn("LinkedBinaryTree_isEmpty: Invalid LinkedBinaryTree!");
         return true;
@@ -286,7 +283,7 @@ void LinkedBinaryTree_InOrderTraversal(const LinkedBinaryTree LBT, ElementType (
  *
  * 注意：当树深度较大时可能引发栈溢出
  */
-void LinkedBinaryTree_PreOrderTraversal(LinkedBinaryTree LBT, ElementType (*visit)(LinkedBinaryTree)) {
+void LinkedBinaryTree_PreOrderTraversal(const LinkedBinaryTree LBT, ElementType (*visit)(LinkedBinaryTree)) {
     if (!LBT) {
         Warn("LinkedBinaryTree_InOrderTraversal: Invalid LinkedBinaryTree!");
         return;
@@ -305,7 +302,7 @@ void LinkedBinaryTree_PreOrderTraversal(LinkedBinaryTree LBT, ElementType (*visi
  *
  * 典型应用场景：表达式树求值
  */
-void LinkedBinaryTree_PostOrderTraversal(LinkedBinaryTree LBT, ElementType (*visit)(LinkedBinaryTree)) {
+void LinkedBinaryTree_PostOrderTraversal(const LinkedBinaryTree LBT, ElementType (*visit)(LinkedBinaryTree)) {
     if (!LBT) {
         Warn("LinkedBinaryTree_InOrderTraversal: Invalid LinkedBinaryTree!");
         return;

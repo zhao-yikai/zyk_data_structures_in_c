@@ -9,10 +9,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+
 #include "LinkedBinaryTree.h"
 #include "Warn.h"
-
-/*━━━━━━━━━━━━━━━━━━━━━ 队列辅助数据结构 ━━━━━━━━━━━━━━━━━━━━━*/
 
 /**
  * @struct QFTNode
@@ -43,9 +42,6 @@ struct QFTHead {
     Position Front;  // 队首指针
     Position Rear;   // 队尾指针
 };
-
-
-/*━━━━━━━━━━━━━━━━━━━━━ 队列操作实现 ━━━━━━━━━━━━━━━━━━━━━*/
 
 /**
  * @brief 创建并初始化空队列
@@ -151,6 +147,7 @@ LinkedBinaryTree QFT_Dequeue(QFT Q) {
     return Dequeue;
 }
 
+
 /**
  * @struct LinkedBinaryTreeNode
  * @brief 链表式二叉树节点结构定义
@@ -164,6 +161,7 @@ struct LinkedBinaryTreeNode {
     LinkedBinaryTreePtr Left;
     LinkedBinaryTreePtr Right;
 };
+
 
 /**
  * @brief 创建基础二叉树节点
@@ -182,6 +180,7 @@ LinkedBinaryTree LinkedBinaryTree_Create() {
     LBT->Left = LBT->Right = NULL;
     return LBT;
 }
+
 
 /**
  * @brief 层序构建完整二叉树
@@ -251,8 +250,6 @@ bool LinkedBinaryTree_isEmpty(const LinkedBinaryTree LBT) {
 }
 
 
-/*━━━━━━━━━━━━━━━━━━━━━ 遍历算法实现 ━━━━━━━━━━━━━━━━━━━━━*/
-
 /**
  * @brief 递归中序遍历实现
  *
@@ -297,6 +294,7 @@ void LinkedBinaryTree_PreOrderTraversal(const LinkedBinaryTree LBT, ElementType 
     if (LBT->Right) LinkedBinaryTree_PreOrderTraversal(LBT->Right, visit);   // 中序遍历其右子树
 }
 
+
 /**
  * @brief 递归后序遍历实现
  *
@@ -315,6 +313,7 @@ void LinkedBinaryTree_PostOrderTraversal(const LinkedBinaryTree LBT, ElementType
     if (LBT->Right) LinkedBinaryTree_PostOrderTraversal(LBT->Right, visit);   // 中序遍历其右子树
     visit(LBT); // 访问根节点
 }
+
 
 /**
  * @brief 层序遍历实现

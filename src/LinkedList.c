@@ -63,6 +63,10 @@ LinkedListHead LinkedList_Create(void) {
     return p;
 }
 
+/*
+ * Shall We Meet Again ?
+ * 28 May 2025
+ */
 
 /**
  * @brief Gets the length of the linked list (excluding the head node).

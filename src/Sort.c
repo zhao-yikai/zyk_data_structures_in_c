@@ -153,7 +153,7 @@ void InsertionSort(ElementType *Arr, const size_t length) {
  * @warning If the input `length` is less than or equal to 0, a warning message will be logged, and the function will
  *          return immediately.
  */
-void BubbleSort(ElementType *Arr, int length) {
+void BubbleSort(ElementType *Arr, const int length) {
     // Check if the input array pointer is NULL
     if (!Arr) {
         // Log a warning if the array pointer is invalid
@@ -184,6 +184,8 @@ void BubbleSort(ElementType *Arr, int length) {
  *                   than the pivot.
  *                   Then recursively sort these two sub-sequences using a similar method.
  * @param Arr Pointer to the array to be sorted.
+ * @param Left
+ * @param Right
  * @param length The number of elements in the array.
  * @note Average time complexity: O(n log n). Unstable sorting. In-place sorting.
  *       It is the fastest general-purpose sorting algorithm in practice. Pay attention to recursive depth optimization.
@@ -317,6 +319,10 @@ void QuickSort(ElementType *Arr, const size_t length) { QuickSortCore(Arr, 0, le
  * and requires O(n) additional space. It is suitable for sorting linked lists and large external datasets.
  *
  * @param Arr Pointer to the array to be sorted.
+ * @param TempArr
+ * @param Left
+ * @param Right
+ * @param RightEnd
  * @param length The number of elements in the array.
  *
  * @note Time complexity: O(n log n). Stable sorting, not in-place. Requires O(n) extra space.

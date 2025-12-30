@@ -1,7 +1,7 @@
 # zyk_data_structures_in_c
 
 [![Language](https://img.shields.io/badge/language-C99-blue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))
-[![Build System](https://img.shields.io/badge/build-CMake-informational.svg)](https://cmake.org/)
+[![Build System](https://img.shields.io/badge/build-Make-informational.svg)](https://www.gnu.org/software/make/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 > 数据结构课程学习记录：用 C（C99）实现常见数据结构与算法。
@@ -19,7 +19,7 @@
 - [变更记录](#变更记录)
 
 ## 模块概览
-> 以 `CMakeLists.txt` 中的模块列表为准（每个模块单独编译成静态库）。
+> 模块列表定义在 `Makefile` 的 `DS_MODULES` 变量中。
 
 - 线性结构：`SeqList`、`LinkedList`、`SeqStack`、`LinkedStack`、`SeqQueue`、`LinkedQueue`
 - 树结构：`SeqBinaryTree`（开发中）、`LinkedBinaryTree`
@@ -29,22 +29,24 @@
 ## 项目结构
 - `include/dsc/*.h`：公共 API 头文件（模块对外接口）
 - `src/*.c`：模块实现
-- `main.c`：唯一可执行文件 `ZYK_Data_Structures_In_C` 的测试入口（目前主要测试 `Sort`）
-- `CMakeLists.txt`：CMake 构建脚本（每个模块一个静态库 + `warning` 工具库）
+- `main.c`：唯一可执行文件 `ZYK_Data_Structures_In_C` 的测试入口
+- `Makefile`：构建脚本（无需 CMake！）
 
 ## 构建与运行
-本项目推荐使用 out-of-source 构建：
+本项目使用 **Makefile** 构建（macOS/Linux 自带 `make`，无需安装任何东西）：
 
 ```sh
-cmake -S . -B cmake-build-debug
-cmake --build cmake-build-debug
-./cmake-build-debug/ZYK_Data_Structures_In_C
+make          # 构建项目
+make run      # 构建并运行
+make clean    # 清理构建产物
+make rebuild  # 完全重建
+make help     # 查看所有命令
 ```
 
-说明：工程开启了 `CMAKE_EXPORT_COMPILE_COMMANDS ON`，会生成 `compile_commands.json` 供 IDE/clangd 使用。
+构建产物在 `build/` 目录下，可执行文件为 `build/ZYK_Data_Structures_In_C`。
 
 ## 使用示例
-> 头文件直接从 `include/dsc` 引入（CMake 已添加 include 路径）。
+> 头文件直接从 `include/dsc` 引入。
 
 ```c
 #include "Sort.h"
@@ -58,6 +60,13 @@ int main(void) {
 
 ## 变更记录
 > 规则：每次对 **代码结构 / API / 构建方式 / 新增模块或算法** 做出可见变更，都需要在此追加一条记录。
+
+### 2025-12-31 (构建系统简化)
+- **CHANGE**: 移除 CMake，改用简单的 Makefile
+  - macOS/Linux 自带 `make`，无需安装任何工具
+  - 简单命令：`make`、`make run`、`make clean`、`make rebuild`
+  - 构建产物在 `build/` 目录
+  - 删除了 `CMakeLists.txt`、`cmake-build-debug/`、`.idea/`
 
 ### 2025-12-31
 - **FIX**: 移除 `Common.h` 中全局的 `Position` typedef，解决其与 `LinkedQueue.c`、`LinkedBinaryTree.c` 中模块内 `Position` 类型的冲突

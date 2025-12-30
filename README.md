@@ -1,7 +1,7 @@
 # zyk_data_structures_in_c
 
 [![Language](https://img.shields.io/badge/language-C99-blue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))
-[![Build System](https://img.shields.io/badge/build-CMake-informational.svg)](https://cmake.org/)
+[![Build System](https://img.shields.io/badge/build-Make-informational.svg)](https://www.gnu.org/software/make/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 > Data Structures course study notes: common data structures and algorithms implemented in C (C99).
@@ -21,7 +21,7 @@ and validating it with a small local test harness.
 - [Change log](#change-log)
 
 ## Modules
-> The authoritative list is in `CMakeLists.txt` (`DATA_STRUCTURES`). Each module is built as a separate static library.
+> The list of modules is defined in `Makefile` (`DS_MODULES`). Each module compiles to `.o` and links into the final executable.
 
 - Linear structures: `SeqList`, `LinkedList`, `SeqStack`, `LinkedStack`, `SeqQueue`, `LinkedQueue`
 - Trees: `SeqBinaryTree` (in progress), `LinkedBinaryTree`
@@ -32,21 +32,23 @@ and validating it with a small local test harness.
 - `include/dsc/*.h`: public module headers (APIs)
 - `src/*.c`: module implementations
 - `main.c`: the single executable test harness (`ZYK_Data_Structures_In_C`, currently focused on `Sort`)
-- `CMakeLists.txt`: CMake build (one static library per module + `warning` utility lib)
+- `Makefile`: simple Make build (no CMake required!)
 
 ## Build & run
-This project is intended to be built out-of-source with CMake:
+This project uses a simple **Makefile** — no CMake required! Just run:
 
 ```sh
-cmake -S . -B cmake-build-debug
-cmake --build cmake-build-debug
-./cmake-build-debug/ZYK_Data_Structures_In_C
+make          # Build the project
+make run      # Build and run
+make clean    # Remove build artifacts
+make rebuild  # Full rebuild
+make help     # Show all commands
 ```
 
-Note: `CMAKE_EXPORT_COMPILE_COMMANDS` is enabled to generate `compile_commands.json` for IDEs/clangd.
+Build output goes to `build/`. The executable is `build/ZYK_Data_Structures_In_C`.
 
 ## Example
-Headers are included directly from `include/dsc` (CMake already configures the include path):
+Headers are included directly from `include/dsc`:
 
 ```c
 #include "Sort.h"
@@ -60,6 +62,13 @@ int main(void) {
 
 ## Change log
 > Rule: for any user-visible change (API/module/build/new algorithm), append an entry here.
+
+### 2025-12-31 (Build System Simplification)
+- **CHANGE**: Replaced CMake with a simple Makefile
+  - No need to install CMake — `make` is built into macOS/Linux
+  - Simple commands: `make`, `make run`, `make clean`, `make rebuild`
+  - Build output in `build/` directory
+  - Removed `CMakeLists.txt`, `cmake-build-debug/`, `.idea/`
 
 ### 2025-12-31
 - **FIX**: Removed global `Position` typedef from `Common.h` to resolve conflicts with module-local `Position` types in `LinkedQueue.c` and `LinkedBinaryTree.c`
@@ -83,6 +92,6 @@ int main(void) {
   - Resolved `ElementType` typedef conflicts between modules using extern declarations
 
 ### 2025-12-30
-- Fixed module filename mismatch: renamed `src/SeqBInaryTree.c` -> `src/SeqBinaryTree.c` to match `CMakeLists.txt`.
+- Fixed module filename mismatch: renamed `src/SeqBInaryTree.c` -> `src/SeqBinaryTree.c`.
 - Updated `include/dsc/SeqBinaryTree.h` typedef typo (`SeqBinayTreePtr` -> `SeqBinaryTreePtr`) and adjusted `SeqBinaryTree_isEmpty` signature to accept `SeqBinaryTree`.
 - Added `.github/copilot-instructions.md` to guide AI coding agents working in this repo.

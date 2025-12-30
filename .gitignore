@@ -1,21 +1,21 @@
 # macOS
 .DS_Store
 
-# CMake build directories
-cmake-build-*/
+# Build output
+build/
 
-# CMake (common)
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-compile_commands.json
-
-# Build outputs
+# Object files
 *.o
 *.a
 *.so
 *.dylib
 *.exe
 
-# JetBrains / CLion
+# IDE
 .idea/
+.vscode/
+*.swp
+*.swo
+
+# Compiled binaries
+ZYK_Data_Structures_In_C

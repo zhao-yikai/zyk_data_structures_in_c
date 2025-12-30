@@ -61,6 +61,13 @@ int main(void) {
 ## 变更记录
 > 规则：每次对 **代码结构 / API / 构建方式 / 新增模块或算法** 做出可见变更，都需要在此追加一条记录。
 
+### 2025-12-31 (UI 对齐优化)
+- **FIX**: 修复 Matrix 演示程序的视觉对齐问题
+  - 二叉树可视化：统一所有叶子节点框宽度，完美对齐
+  - 遍历顺序框：修复 Level-order 行对齐
+  - 综合演示统计：修复 "BREACH SIMULATION COMPLETE" 框对齐
+  - 所有框线和文本现在完美对称
+
 ### 2025-12-31 (VSCode 配置与编译警告修复)
 - **NEW**: 添加 VSCode C/C++ IntelliSense 配置
   - `.vscode/c_cpp_properties.json` - 头文件路径配置

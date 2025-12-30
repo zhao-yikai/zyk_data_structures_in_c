@@ -63,6 +63,13 @@ int main(void) {
 ## Change log
 > Rule: for any user-visible change (API/module/build/new algorithm), append an entry here.
 
+### 2025-12-31 (UI Alignment Optimization)
+- **FIX**: Fixed visual alignment issues in Matrix demo program
+  - Binary tree visualization: unified all leaf node box widths for perfect alignment
+  - Traversal order box: fixed Level-order row alignment
+  - Breach simulation stats: fixed "BREACH SIMULATION COMPLETE" box alignment
+  - All border lines and text now perfectly symmetrical
+
 ### 2025-12-31 (VSCode Configuration & Warning Fixes)
 - **NEW**: Added VSCode C/C++ IntelliSense configuration
   - `.vscode/c_cpp_properties.json` - Include path configuration

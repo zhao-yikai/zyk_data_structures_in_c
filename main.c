@@ -486,11 +486,11 @@ static void demo_binary_tree_decision(void) {
     printf("                            └──────┬──────┘\n");
     printf("                    ┌──────────────┴──────────────┐\n");
     printf("              ┌─────┴─────┐                 ┌─────┴─────┐\n");
-    printf("              │" GREEN " LEFT: 50 " MATRIX_BRIGHT "│                 │" RED " RIGHT:150" MATRIX_BRIGHT "│\n");
+    printf("              │" GREEN " LEFT: 50  " MATRIX_BRIGHT "│                 │" RED " RIGHT:150 " MATRIX_BRIGHT "│\n");
     printf("              └─────┬─────┘                 └─────┬─────┘\n");
     printf("           ┌───────┴───────┐             ┌───────┴───────┐\n");
     printf("      ┌────┴────┐    ┌────┴────┐   ┌────┴────┐    ┌────┴────┐\n");
-    printf("      │" DIM " 25    " MATRIX_BRIGHT "│    │" DIM " 75    " MATRIX_BRIGHT "│   │" DIM " 125   " MATRIX_BRIGHT "│    │" DIM " 175   " MATRIX_BRIGHT "│\n");
+    printf("      │" DIM "  25     " MATRIX_BRIGHT "│    │" DIM "  75     " MATRIX_BRIGHT "│   │" DIM " 125     " MATRIX_BRIGHT "│    │" DIM " 175     " MATRIX_BRIGHT "│\n");
     printf("      └─────────┘    └─────────┘   └─────────┘    └─────────┘\n");
     printf(RESET);
 
@@ -506,7 +506,7 @@ static void demo_binary_tree_decision(void) {
     printf("  │" RESET " " MATRIX_BRIGHT "Pre-order  (VLR):" RESET " ROOT → LEFT → RIGHT           " MATRIX_DIM "│\n");
     printf("  │" RESET " " MATRIX_BRIGHT "In-order   (LVR):" RESET " LEFT → ROOT → RIGHT           " MATRIX_DIM "│\n");
     printf("  │" RESET " " MATRIX_BRIGHT "Post-order (LRV):" RESET " LEFT → RIGHT → ROOT           " MATRIX_DIM "│\n");
-    printf("  │" RESET " " MATRIX_BRIGHT "Level-order    :" RESET " Layer by layer (BFS)          " MATRIX_DIM "│\n");
+    printf("  │" RESET " " MATRIX_BRIGHT "Level-order    :" RESET "  Layer by layer (BFS)          " MATRIX_DIM "│\n");
     printf("  └─────────────────────────────────────────────────────┘\n" RESET);
 
     printf(MATRIX_GREEN "\n  [TREE] Decision pathways mapped successfully.\n" RESET);
@@ -686,7 +686,7 @@ static void demo_hack_simulation(void) {
 
     /* 最终状态 */
     printf("\n  " MATRIX_BRIGHT "═══════════════════════════════════════════════════\n" RESET);
-    printf("  " MATRIX_GREEN "  BREACH SIMULATION COMPLETE\n" RESET);
+    printf("    " MATRIX_GREEN "BREACH SIMULATION COMPLETE\n" RESET);
     printf("  " MATRIX_DIM "  ─────────────────────────────────────────────────\n" RESET);
     printf("    Targets scanned    : " CYAN "%lld\n" RESET, (long long)LinkedList_GetLength(targets));
     printf("    Payloads loaded    : " RED "%d\n" RESET, SeqList_GetLength(payloads));

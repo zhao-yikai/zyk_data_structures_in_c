@@ -16,7 +16,6 @@
 
 /* 数据结构头文件 */
 #include "Common.h"
-#include "Warn.h"
 #include "SeqList.h"
 #include "LinkedList.h"
 #include "SeqStack.h"

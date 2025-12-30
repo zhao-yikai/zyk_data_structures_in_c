@@ -23,6 +23,13 @@
   - `cmake -S . -B cmake-build-debug`
   - `cmake --build cmake-build-debug`
   - `./cmake-build-debug/ZYK_Data_Structures_In_C`
+
+- 如果你的终端里 `cmake` 不在 `PATH`（例如 CLion 集成终端环境较“干净”），推荐直接使用 **CLion 自带的 CMake**：
+  If `cmake` is not in your `PATH` (e.g. CLion integrated terminal), use **CLion’s bundled CMake** explicitly.
+
+  - macOS (Apple Silicon) 常见路径 / common path:
+    - `/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake`
+
 - 工程会导出 `compile_commands.json`（`CMAKE_EXPORT_COMPILE_COMMANDS ON`），方便 IDE/静态分析。
   The project exports `compile_commands.json` for IDEs/static analysis.
 

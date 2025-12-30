@@ -7,13 +7,13 @@
 #ifndef LINKED_QUEUES_H
 #define LINKED_QUEUES_H
 
-#include <stdbool.h>
-#include <float.h>
+#include "Common.h"  // 统一类型定义
 
-#define LINKED_QUEUE_ERROR (-DBL_MAX)
+#define LINKED_QUEUE_ERROR DSC_ERROR
+
+// ElementType 现在由 Common.h 统一定义
 
 typedef struct LinkedQueueHead * LinkedQueue;
-typedef double ElementType;
 
 // 生成空队列
 LinkedQueue LinkedQueue_Create(void);

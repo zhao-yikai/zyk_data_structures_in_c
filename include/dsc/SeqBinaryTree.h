@@ -5,7 +5,9 @@
 #ifndef SEQBINARYTREE_H
 #define SEQBINARYTREE_H
 
-#include <stdbool.h>
+#include "Common.h"  // 统一类型定义
+
+// ElementType 现在由 Common.h 统一定义
 
 typedef struct SeqBinaryTreeNode * SeqBinaryTreePtr;
 typedef SeqBinaryTreePtr SeqBinaryTree;

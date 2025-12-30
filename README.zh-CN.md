@@ -6,8 +6,10 @@
 
 > 数据结构课程学习记录：用 C（C99）实现常见数据结构与算法。
 
-本仓库是我在学习《数据结构》（陈越、何钦明）课程/教材过程中编写的练习与笔记式实现。
-目标是通过 **手写实现 + 小型测试** 来理解数据结构的核心操作、边界条件和复杂度。
+本仓库是我在学习《数据结构》（Chen Yue / 陈越, He Qinming / 何钦明）课程/教材过程中编写的练习与笔记式实现。
+目标是通过 **手写实现 + 小型测试** 来理解数据结构的核心操作、边界条件和复杂度取舍。
+
+- 英文版 README：见 [`README.md`](./README.md)
 
 ## 目录
 - [模块概览](#模块概览)
@@ -39,7 +41,7 @@ cmake --build cmake-build-debug
 ./cmake-build-debug/ZYK_Data_Structures_In_C
 ```
 
-说明：工程开启了 `CMAKE_EXPORT_COMPILE_COMMANDS ON`，便于 CLion/clangd 使用。
+说明：工程开启了 `CMAKE_EXPORT_COMPILE_COMMANDS ON`，会生成 `compile_commands.json` 供 IDE/clangd 使用。
 
 ## 使用示例
 > 头文件直接从 `include/dsc` 引入（CMake 已添加 include 路径）。
@@ -56,6 +58,27 @@ int main(void) {
 
 ## 变更记录
 > 规则：每次对 **代码结构 / API / 构建方式 / 新增模块或算法** 做出可见变更，都需要在此追加一条记录。
+
+### 2025-12-31
+- **FIX**: 移除 `Common.h` 中全局的 `Position` typedef，解决其与 `LinkedQueue.c`、`LinkedBinaryTree.c` 中模块内 `Position` 类型的冲突
+- **NEW**: 完整重构 `main.c` - "THE MATRIX: Data Structure Edition"
+  - Matrix 风格数字雨动画：使用 `SeqQueue` 保存帧历史
+  - 系统初始化演示：使用 `SeqList` 模拟模块加载
+  - 网络追踪演示：使用 `LinkedList` 追踪 IP 节点
+  - 调用栈演示：同时使用 `SeqStack` 与 `LinkedStack`
+  - 消息队列演示：使用 `SeqQueue` 与 `LinkedQueue`
+  - 决策树可视化：使用 `SeqBinaryTree`
+  - 排序基准测试：测试 5 种算法（Selection、Bubble、Quick、Merge、Insertion）
+  - 综合 "hack simulation"：同时使用所有数据结构
+  - 完整 ANSI 颜色支持（Matrix 绿色主题）
+
+### 2025-12-30 (Evening)
+- **NEW**: 以 "Matrix" 主题重写 `main.c` 交互式演示程序：
+  - 展示所有数据结构：`SeqList`、`LinkedList`、`SeqStack`、`LinkedStack`、`SeqQueue`、`LinkedQueue`
+  - 演示 5 种排序算法：`InsertionSort`、`QuickSort`、`BubbleSort`、`SelectionSort`、`MergeSort`
+  - 赛博朋克风格：ANSI 颜色、Matrix 风格代码雨、打字机动画
+  - 包含 5 个主题模块：Neural Network Sim、Memory Chain Analysis、Call Stack Trace、Packet Stream、Decryption
+  - 通过 extern 声明解决模块间 `ElementType` typedef 冲突
 
 ### 2025-12-30
 - 修复模块文件名不匹配：`src/SeqBInaryTree.c` → `src/SeqBinaryTree.c`（与 `CMakeLists.txt` 对齐）。

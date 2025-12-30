@@ -7,14 +7,14 @@
 #ifndef SEQUENTIAL_QUEUES_H
 #define SEQUENTIAL_QUEUES_H
 
-#define SEQ_QUEUE_ERROR (-DBL_MAX)
+#include "Common.h"  // 统一类型定义
 
-#include <stdbool.h>
-#include <float.h>
+#define SEQ_QUEUE_ERROR DSC_ERROR
+
+// ElementType 现在由 Common.h 统一定义
 
 typedef struct SeqQueueNode * SeqQueueNodePtr;
 typedef SeqQueueNodePtr SeqQueue;
-typedef double ElementType;
 
 // 生成空队列， 其最大长度为 MaxSize
 SeqQueue SeqQueue_Create(int MaxSize);

@@ -7,7 +7,7 @@
 #include "SeqBinaryTree.h"
 #include "Warn.h"
 
-typedef double ElementType;
+// ElementType 现在由 Common.h 统一定义
 
 struct SeqBinaryTreeNode {
     ElementType * Data;

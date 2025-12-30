@@ -7,18 +7,17 @@
 #ifndef LINKED_LINEAR_LIST_H
 #define LINKED_LINEAR_LIST_H
 
-#include <stdlib.h>
-#include <stdbool.h>
+#include "Common.h"  // 统一类型定义
 
-#define LINKED_ERROR INT64_MIN
+#define LINKED_ERROR DSC_ERROR
 
-typedef int_fast64_t ElementType;
+// ElementType 现在由 Common.h 统一定义
 
 typedef struct LinkedListNode *LinkedListNodePtr;
 
 typedef LinkedListNodePtr LinkedList_Position;
 typedef LinkedListNodePtr LinkedListHead;
-typedef int_fast64_t Length;
+// Length 现在由 Common.h 统一定义
 
 /*
  * 创建链表头节点

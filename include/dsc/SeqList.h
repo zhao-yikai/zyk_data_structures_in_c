@@ -7,8 +7,7 @@
 #ifndef SEQUENTIAL_LINEAR_LIST_H  // Include Guard 开始
 #define SEQUENTIAL_LINEAR_LIST_H
 
-#include <stdlib.h>
-#include <stdbool.h>
+#include "Common.h"  // 统一类型定义
 
 /*  Considering that operations on linear lists include insertion, deletion, etc.
     and the length of the list is dynamically variable, the capacity of the array 
@@ -16,7 +15,7 @@
 */
 #define MAXSIZE 1000 // MAXSIZE is an integer sufficiently large as defined based on practical issues.
 
-typedef int_fast64_t ElementType;
+// ElementType 现在由 Common.h 统一定义
 
 /*
     The Position here refers to the integer index of the array, starting from 0. 

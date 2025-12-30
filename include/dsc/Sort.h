@@ -5,11 +5,11 @@
 #ifndef SORT_H
 #define SORT_H
 
-#include <stdlib.h>
-#include <float.h>
-#define SORT_ERROR (-DBL_MAX)
+#include "Common.h"  // 统一类型定义
 
-typedef double ElementType;
+#define SORT_ERROR DSC_ERROR
+
+// ElementType 现在由 Common.h 统一定义
 
 /**
  * @brief 选择排序 - 每次选择最小元素放到已排序序列末尾

@@ -61,6 +61,27 @@ int main(void) {
 ## Change log
 > Rule: for any user-visible change (API/module/build/new algorithm), append an entry here.
 
+### 2025-12-31
+- **FIX**: Removed global `Position` typedef from `Common.h` to resolve conflicts with module-local `Position` types in `LinkedQueue.c` and `LinkedBinaryTree.c`
+- **NEW**: Complete overhaul of `main.c` - "THE MATRIX: Data Structure Edition"
+  - Matrix-style digital rain animation using `SeqQueue` for frame history
+  - System initialization demo using `SeqList` for module loading simulation
+  - Network trace demo using `LinkedList` for IP node tracking
+  - Call stack demo using both `SeqStack` and `LinkedStack`
+  - Message queue demo using `SeqQueue` and `LinkedQueue`
+  - Decision tree visualization using `SeqBinaryTree`
+  - Sorting benchmark demo testing 5 algorithms: Selection, Bubble, Quick, Merge, Insertion
+  - Comprehensive "hack simulation" using all data structures simultaneously
+  - Full ANSI color support with Matrix-green color scheme
+
+### 2025-12-30 (Evening)
+- **NEW**: Complete rewrite of `main.c` with a "Matrix"-themed interactive demo program:
+  - Showcases ALL data structures: `SeqList`, `LinkedList`, `SeqStack`, `LinkedStack`, `SeqQueue`, `LinkedQueue`
+  - Demonstrates 5 sorting algorithms: `InsertionSort`, `QuickSort`, `BubbleSort`, `SelectionSort`, `MergeSort`
+  - Features cyberpunk aesthetics: ANSI color codes, Matrix-style code rain, typing animations
+  - Includes 5 themed modules: Neural Network Sim, Memory Chain Analysis, Call Stack Trace, Packet Stream, Decryption
+  - Resolved `ElementType` typedef conflicts between modules using extern declarations
+
 ### 2025-12-30
 - Fixed module filename mismatch: renamed `src/SeqBInaryTree.c` -> `src/SeqBinaryTree.c` to match `CMakeLists.txt`.
 - Updated `include/dsc/SeqBinaryTree.h` typedef typo (`SeqBinayTreePtr` -> `SeqBinaryTreePtr`) and adjusted `SeqBinaryTree_isEmpty` signature to accept `SeqBinaryTree`.

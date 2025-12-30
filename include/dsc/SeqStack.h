@@ -7,12 +7,11 @@
 #ifndef SEQUENTIAL_STACKS_H
 #define SEQUENTIAL_STACKS_H
 
-#include <stdlib.h>
-#include <stdbool.h>
+#include "Common.h"  // 统一类型定义
 
-#define SEQ_STACK_ERROR INT64_MIN
+#define SEQ_STACK_ERROR DSC_ERROR
 
-typedef int_fast64_t ElementType;
+// ElementType 现在由 Common.h 统一定义
 
 typedef struct SeqStackNode * SeqStackNodePtr;
 typedef SeqStackNodePtr SeqStack;

@@ -7,12 +7,11 @@
 #ifndef LINKEDBINARYTREE_H
 #define LINKEDBINARYTREE_H
 
-#include <stdbool.h>
+#include "Common.h"  // 统一类型定义
 
 #define NoInfo 0  /* 特殊标记值，用于表示空节点/终止输入 */
 
-/* 二叉树节点存储元素类型（可修改为需要的数据类型） */
-typedef double ElementType;
+/* 二叉树节点存储元素类型 - 现在由 Common.h 统一定义 */
 
 /* 前向声明二叉树节点指针类型 */
 typedef struct LinkedBinaryTreeNode * LinkedBinaryTreePtr;

@@ -40,7 +40,7 @@ struct LinkedStackNode {
  * @note The caller should check the return value to ensure that the head node
  *       was created successfully. If the return value is `NULL`, the operation failed.
  */
-LinkedStackHead LinkedStack_Create() {
+LinkedStackHead LinkedStack_Create(void) {
     // Allocate memory for the head node of the linked stack
     LinkedStackHead S = malloc(sizeof(struct LinkedStackNode));
     if (S) {

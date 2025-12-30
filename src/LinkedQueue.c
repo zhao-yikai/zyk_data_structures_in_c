@@ -30,7 +30,7 @@ struct LinkedQueueHead {
  * 创建空队列
  * 返回值: 队列头指针
  */
-LinkedQueue LinkedQueue_Create() {
+LinkedQueue LinkedQueue_Create(void) {
     LinkedQueue Q = malloc(sizeof(struct LinkedQueueHead));
     // DeepSeek: 未检查malloc返回值，可能返回NULL指针
     Q->Front = NULL;  // 初始化空队列

@@ -17,7 +17,7 @@ typedef struct LinkedStackNode * LinkedStackNodePtr;
 typedef LinkedStackNodePtr LinkedStackHead;
 
 // 1. 生成空堆栈
-LinkedStackHead LinkedStack_Create();
+LinkedStackHead LinkedStack_Create(void);
 
 // 2. 将元素X压入堆栈。 若堆栈已满， 返回false, 否则将数据元素插入到堆栈S栈顶处并返回true.
 bool LinkedStack_Push(LinkedStackHead S, ElementType X);

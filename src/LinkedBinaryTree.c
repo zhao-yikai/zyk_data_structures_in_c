@@ -51,7 +51,7 @@ struct QFTHead {
  *
  * @return QFT 成功返回队列指针，内存分配失败返回NULL
  */
-QFT QFT_Create() {
+QFT QFT_Create(void) {
     QFT Q = malloc(sizeof(struct QFTHead));
     // DeepSeek: 未检查malloc返回值，可能返回NULL指针
     Q->Front = NULL;  // 初始化空队列
@@ -171,7 +171,7 @@ struct LinkedBinaryTreeNode {
  *
  * @return LinkedBinaryTree 成功返回节点指针，失败返回NULL
  */
-LinkedBinaryTree LinkedBinaryTree_Create() {
+LinkedBinaryTree LinkedBinaryTree_Create(void) {
     LinkedBinaryTree LBT = malloc(sizeof(struct LinkedBinaryTreeNode));
     if (!LBT) {
         Warn("LinkedBinaryTree_Create: Memory Allocation Fault!");

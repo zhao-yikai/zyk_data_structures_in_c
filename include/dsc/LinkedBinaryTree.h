@@ -29,7 +29,7 @@ typedef LinkedBinaryTreePtr LinkedBinaryTree;
  *
  * @return LinkedBinaryTree 成功返回节点指针，内存分配失败返回NULL
  */
-LinkedBinaryTree LinkedBinaryTree_Create();
+LinkedBinaryTree LinkedBinaryTree_Create(void);
 
 
 /**

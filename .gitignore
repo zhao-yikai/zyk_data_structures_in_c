@@ -14,8 +14,12 @@ build/
 # IDE
 .idea/
 .vscode/
+.cache/
 *.swp
 *.swo
 
 # Compiled binaries
 ZYK_Data_Structures_In_C
+
+# Compilation database (generated)
+compile_commands.json

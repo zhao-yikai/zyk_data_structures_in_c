@@ -63,6 +63,15 @@ int main(void) {
 ## Change log
 > Rule: for any user-visible change (API/module/build/new algorithm), append an entry here.
 
+### 2025-12-31 (VSCode Configuration & Warning Fixes)
+- **NEW**: Added VSCode C/C++ IntelliSense configuration
+  - `.vscode/c_cpp_properties.json` - Include path configuration
+  - `.vscode/settings.json` - Editor settings
+  - `compile_commands.json` - Compilation command database
+- **FIX**: Fixed all compilation warnings
+  - Fixed function prototypes: `Create()` → `Create(void)` (C99 strict mode)
+  - Added newlines at end of files
+
 ### 2025-12-31 (Build System Simplification)
 - **CHANGE**: Replaced CMake with a simple Makefile
   - No need to install CMake — `make` is built into macOS/Linux

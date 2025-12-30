@@ -61,6 +61,15 @@ int main(void) {
 ## 变更记录
 > 规则：每次对 **代码结构 / API / 构建方式 / 新增模块或算法** 做出可见变更，都需要在此追加一条记录。
 
+### 2025-12-31 (VSCode 配置与编译警告修复)
+- **NEW**: 添加 VSCode C/C++ IntelliSense 配置
+  - `.vscode/c_cpp_properties.json` - 头文件路径配置
+  - `.vscode/settings.json` - 编辑器设置
+  - `compile_commands.json` - 编译命令数据库
+- **FIX**: 修复所有编译警告
+  - 修复函数原型：`Create()` → `Create(void)` (C99 严格模式)
+  - 添加文件末尾换行符
+
 ### 2025-12-31 (构建系统简化)
 - **CHANGE**: 移除 CMake，改用简单的 Makefile
   - macOS/Linux 自带 `make`，无需安装任何工具

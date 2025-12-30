@@ -1,25 +1,21 @@
-# CLion 默认忽略模板
-.idea/
-cmake-build-*/
-*.iml
-*.iws
+# macOS
+.DS_Store
 
-# C/C++ 编译产物
+# CMake build directories
+cmake-build-*/
+
+# CMake (common)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# Build outputs
 *.o
 *.a
 *.so
+*.dylib
 *.exe
-*.dll
-*.out
 
-# CMake 生成文件
-CMakeCache.txt
-CMakeFiles/
-install_manifest.txt
-
-# 项目自定义忽略项
-/build/
-/bin/
-/lib/
-/cmake-build-debug/
-/cmake-build-release/
+# JetBrains / CLion
+.idea/

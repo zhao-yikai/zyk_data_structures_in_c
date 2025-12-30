@@ -7,10 +7,10 @@
 
 #include <stdbool.h>
 
-typedef struct SeqBinaryTreeNode * SeqBinayTreePtr;
-typedef SeqBinayTreePtr SeqBinaryTree;
+typedef struct SeqBinaryTreeNode * SeqBinaryTreePtr;
+typedef SeqBinaryTreePtr SeqBinaryTree;
 
-bool SeqBinaryTree_isEmpty();
+bool SeqBinaryTree_isEmpty(SeqBinaryTree SBT);
 
 // LVR
 void SeqBinaryTree_InOrderTraversal(SeqBinaryTree SBT);
